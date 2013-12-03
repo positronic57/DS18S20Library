@@ -1,0 +1,10 @@
+DS18S20 temperature sensor AVR-libc library for AVR 8-bit microcontrollers.
+The library contains two parts. One for implementation of 1-Wire interface and the second
+for communication with the DS18S20 temperature sensor over 1-Wire interface.
+Config.h header is used to define the microcontroller PINs for connection with the sensor.
+Tested on Atmel Atmega32 microcontroller.
+
+WARNING: 
+The source is provided as it is without any warranty. Use it on your own risk!
+The author does not take any responsibility for the damage caused while using this software.
+
