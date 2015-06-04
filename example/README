@@ -1,0 +1,22 @@
+This example demonstrates the usage of DS18S20 library on Atmega32 microcotroller.
+The temperature sensor is connected on the PIN defined in the config.h header.
+
+The program starts with the initialization sequence on the 1-Wire bus.
+If the DS18S20 responds to the init signal, the microcontroller reads the
+ROM of DS18S20 and sends the serial number of the sensor via serial port
+in hexadecimal format.
+
+After that the microcontroller sends a command that initiates a temperature conversion.
+The temperature value is stored in 2 registers in the DS18S20 scratchpad.
+Atmega32 reads the content of the scratchpad using ReadDS18S20ScratchPad function
+and sends the value of the temperature registers on the serial port.
+The temperature can be then calculated as explained in the DS18S20 data sheet.
+
+WARNING:
+
+The code is tested on Atmega32 microcontroller.
+
+The source is provided as it is without any warranty.
+Use it on your own risk!
+The author does not take any responsibility for the damage caused while using this software.
+
