@@ -1,8 +1,31 @@
 DS18S20 temperature sensor AVR-libc library for AVR 8-bit microcontrollers.
+
 The library contains two parts. One for implementation of 1-Wire interface and the second
 for communication with the DS18S20 temperature sensor over 1-Wire interface.
+
 Config.h header is used to define the microcontroller PINs for connection with the sensor.
+
 Tested on Atmel Atmega32 microcontroller.
+
+Usage
+
+The following functions are included in the library:
+
+ - void SendCommand2DS18S20(uint8_t)
+	The function is used to send function commands to DS18S20. The command is specified as argument to the function.
+	The list of supported commands is defined in ds18s20.h header file.
+ - uint8_t Send_READ_ROM_Command2DS18S20(uint8_t *)
+	The function sends READ_SCRATCHPAD command to the sensor. The sensor response is return via the function argument.
+	It returns 1 in case of successful attempt to read the ROM, 0 in case of failure. 
+
+ - void StartConvertTemperature()	
+	Send CONVERT_T command to the sensor so it can start with the temperature measurement and wait till the
+	conversion is over.
+
+ - uint8_t ReadDS18S20ScratchPad(uint8_t *)
+	Read sensors internal memory and check the integrity of the data with CRC. 
+	Returns 1 if the integrity check is successful, 0 if there is a CRC error.
+	
 
 WARNING: 
 The source is provided as it is without any warranty. Use it on your own risk!

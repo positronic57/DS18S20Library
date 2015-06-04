@@ -1,3 +1,18 @@
+/*
+ * main.c
+ *
+ * Copyright (c) 2015  Goce Boshkovski
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License.
+ *
+ * Example of using DS18S20 library on Atmega32 for temperature measurement. 
+ * It demonstrates the usage of all functions present in the library.
+ */
+
+
+
 #include "OWcomm.h"
 #include "ds18S20.h"
 #include "UART.h"
