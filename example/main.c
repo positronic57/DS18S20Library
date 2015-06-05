@@ -17,6 +17,9 @@
 #include "ds18S20.h"
 #include "UART.h"
 
+//Calculates the temperature and sends it via serial port
+void ConvertTemperature2String(char,char);
+
 int main(void)
 {
 	uint8_t code[8];	// buffer for the DS18S20 serial number (its address on 1-wire bus)
@@ -70,4 +73,38 @@ int main(void)
 		
 	return 0;
 
+}
+
+void ConvertTemperature2String(char TH,char TL)
+{
+	char delitel=10;
+	char tmp;
+
+	tmp=TL; 
+	TL >>=1; 
+	TL &=0x7F;
+	if (TH)
+	{
+		TL=128-TL;
+		USART_SendChar('-');
+	}
+	else
+		USART_SendChar('+');
+	if (TL==-1)
+		USART_SendChar('0');
+	else
+	{
+		do
+		{
+			USART_SendChar('0'+TL/delitel);
+			TL%=delitel;
+			delitel/=10;
+		}while(TL);
+	}
+	USART_SendChar('.');
+	if (tmp&1)
+		USART_SendChar('5');
+	else
+		USART_SendChar('0');
+	USART_SendString("C\n"); 
 }
