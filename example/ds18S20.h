@@ -10,6 +10,8 @@
 * the Free Software Foundation; either version 2 of the License.
 *
 */
+#ifndef DS18S20_H_
+#define DS18S20_H_
 
 #include "OWcomm.h"
 #include <avr/io.h>
@@ -35,7 +37,7 @@ extern uint8_t Send_READ_ROM_Command2DS18S20(uint8_t *);
 extern void StartConvertTemperature();
 extern uint8_t ReadDS18S20ScratchPad(uint8_t *);
 
-
+#endif /* DS18S20_H_ */
 
 
 

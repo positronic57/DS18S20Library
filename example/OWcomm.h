@@ -9,6 +9,8 @@
 * the Free Software Foundation; either version 2 of the License.
 *
 */
+#ifndef OWCOMM_H_
+#define OWCOMM_H_
 
 #include <avr/io.h>
 #include "config.h"
@@ -46,8 +48,4 @@ extern uint8_t OWReadByte();
 
 extern uint8_t OWReset();
 
-
-
-
-
-
+#endif /* OWCOMM_H_ */
