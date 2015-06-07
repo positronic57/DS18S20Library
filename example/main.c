@@ -23,7 +23,7 @@ void ConvertTemperature2String(char,char);
 int main(void)
 {
 	uint8_t code[8];	// buffer for the DS18S20 serial number (its address on 1-wire bus)
-	char scratchpad[9];	// DS18S20 scratchpad
+	uint8_t scratchpad[9];	// DS18S20 scratchpad
 	uint8_t i;
 	
 	// AVR serail port init

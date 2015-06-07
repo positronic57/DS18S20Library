@@ -11,7 +11,6 @@
    Inspired by the avr-libc's loop-code
 */
 
-//#include <avr/io.h>
 #include <inttypes.h>
 
 #include "delay.h"

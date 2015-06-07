@@ -3,7 +3,6 @@
 #define _delay_h_
 
 #include <inttypes.h>
-//#include <avr/io.h>
 
 /* delay function for microsec
    4 cpu cycles per loop + 1 cycles(?) overhead 
