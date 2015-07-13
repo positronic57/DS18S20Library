@@ -11,7 +11,6 @@
 */
 
 #include "OWcomm.h"
-#include <avr/interrupt.h>
 
 uint8_t OWReset()
 {
@@ -34,11 +33,6 @@ uint8_t OWReset()
 /* Send a bit over 1-Wire interface. */	
 void OWWriteBit(uint8_t bit)
 {
-	uint8_t sreg;
-	
-	sreg=SREG;	
-	cli();	
-	
 	DS18S20_PORT &= ~(_BV(DS18S20_DQ));
 	
 	if (bit)
@@ -54,11 +48,9 @@ void OWWriteBit(uint8_t bit)
 		//Write 0
 		DS18S20_DDR |= _BV(DS18S20_DQ);
 		delay_us(70);
-		DDRD &= 0xDF;
+		DS18S20_DDR &= ~(_BV(DS18S20_DQ));
 	}
 	
-	sei();	
-	SREG=sreg;	
 }
 		
 /* Read a bit from the 1-Wire interface. */
@@ -67,9 +59,6 @@ uint8_t OWReadBit()
 	uint8_t result=0;
 	uint8_t sreg;
 	
-	sreg=SREG; 
-	cli(); 
-			
 
 	DS18S20_PORT &= ~(_BV(DS18S20_DQ));
 	DS18S20_DDR |= _BV(DS18S20_DQ);
@@ -80,9 +69,6 @@ uint8_t OWReadBit()
 	
 	if (DS18S20_PIN & (_BV(DS18S20_DQ))) result=1;
 	delay_us(60);
-	
-	sei();
-	SREG=sreg;	
 	
 	return result;
 }
