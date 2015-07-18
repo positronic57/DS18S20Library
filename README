@@ -1,31 +1,46 @@
-DS18S20 temperature sensor AVR-libc library for AVR 8-bit microcontrollers.
+DS18S20library is AVR C library for connecting DS18S20 temperature sensor to 8-bit AVR microcontrollers.
 
-The library contains two parts. One for implementation of 1-Wire interface and the second
-for communication with the DS18S20 temperature sensor over 1-Wire interface.
+The library implements 1-Wire interface for communication with DS18S20.
+The time delay functions that are included in the library and the CRC implementation 
+distributed with the library are written by Martin Thomas.
 
-Config.h header is used to define the microcontroller PINs for connection with the sensor.
+Supported MCU Hardware
 
-Tested on Atmel Atmega32 microcontroller.
+The library is compatible with every 8-bit AVR microcontroller.
 
+DS1820 support and implemented functions
+
+The library can be used only in cases when DS18S20 sensor is powered by external power supply.
+The library doesn't query the sensor for the type of the power supply.
+
+Current version supports 1-Wire bus with only one device attached to it.
+SEARCH_ROM is not implemented in the library so it cannot query the bus for connected devices/sensors.
+
+Implemented DS1820 functions:
+- DS18S20 sensor initialization;
+- READ ROM command for fetching the ROM address of the sensor;
+- SKIP ROM command so the library can speak to the sensor directly without using sensors 1-Wire bus address;
+- Convert T command that initiates a single temperature conversion;
+- READ SCRATCHPAD command that allows the master to read the contents of the sensor memory.
+ 
 Usage
 
-The following functions are included in the library:
+The library use DS18S20_Init function to define the 1-Wire bus and initialize the sensor.
+For bus definition, the init function requires two arguments:
+- the address of MCU PORT used for 1-Wire bus;
+- MCU pin that is connected to the DQ pin of DS18S20.
 
- - void SendCommand2DS18S20(uint8_t)
-	The function is used to send function commands to DS18S20. The command is specified as argument to the function.
-	The list of supported commands is defined in ds18s20.h header file.
- - uint8_t Send_READ_ROM_Command2DS18S20(uint8_t *)
-	The function sends READ_SCRATCHPAD command to the sensor. The sensor response is return via the function argument.
-	It returns 1 in case of successful attempt to read the ROM, 0 in case of failure. 
+For example:
 
- - void StartConvertTemperature()	
-	Send CONVERT_T command to the sensor so it can start with the temperature measurement and wait till the
-	conversion is over.
+DS18S20_Init(pDS18S20,&PORTD,PD5);
 
- - uint8_t ReadDS18S20ScratchPad(uint8_t *)
-	Read sensors internal memory and check the integrity of the data with CRC. 
-	Returns 1 if the integrity check is successful, 0 if there is a CRC error.
-	
+After the initialization step, the rest of the library functions/macros can be used to
+get sensor address, start temperature conversion and read the sensor memory that contains 
+the temperature value.
+
+Check the doc folder for detailed describtion of the library.
+
+Tested on Atmega32 and Atiny2313 microcontrollers.
 
 WARNING: 
 The source is provided as it is without any warranty. Use it on your own risk!

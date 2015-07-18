@@ -1,80 +1,195 @@
 /*
-* 
-* DS18S20 temprature sensor AVR-libc library for AVR 8-bit 
-* microcontrollers.
-* 
-* Copyright (c) 2013 Goce Boshkovski
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License.
-*
-*/
+ * ds18s20.c
+ *
+ * Created: 13-Jul-15 23:49:17
+ * Author: Goce Boshkovski
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License.
+ */ 
 
+#include <avr/io.h>
 #include "ds18S20.h"
 #include "CRCgen.h"
 
-// Send command to DS18x20 over 1-Wire interface.
-void SendCommand2DS18S20(uint8_t command)
+/** @file ds18S20.c
+ *  @brief Implements the functions defined in the header file.
+ *
+ *  @date 13-Jun-15
+ *  @author Goce Boshkovski
+ */
+
+/**
+ * @author Martin Thomas
+ * @brief Precise Delay Functions
+ * V 0.5, Martin Thomas, 9/2004
+ */
+void delayloop32(uint32_t loops)
 {
-	OWWriteByte(command);
+	__asm__ volatile ( "cp  %A0,__zero_reg__ \n\t"  \
+	"cpc %B0,__zero_reg__ \n\t"  \
+	"cpc %C0,__zero_reg__ \n\t"  \
+	"cpc %D0,__zero_reg__ \n\t"  \
+	"breq L_Exit_%=       \n\t"  \
+	"L_LOOP_%=:           \n\t"  \
+	"subi %A0,1           \n\t"  \
+	"sbci %B0,0           \n\t"  \
+	"sbci %C0,0           \n\t"  \
+	"sbci %D0,0           \n\t"  \
+	"brne L_LOOP_%=            \n\t"  \
+	"L_Exit_%=:           \n\t"  \
+	: "=w" (loops)              \
+	: "0"  (loops)              \
+	);                             \
+	
+	return;
 }
 
-/* Read DS18x20 ROM memory. */
-uint8_t Send_READ_ROM_Command2DS18S20(uint8_t *code)
+
+uint8_t OWReset(TSDS18S20 *pDS18S20)
+{
+	uint8_t result;
+
+	*(pDS18S20->DS18S20_PORT-1) |= _BV(pDS18S20->DS18S20_PIN);
+	delay_us(480);
+	
+	*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
+	delay_us(80);
+	
+	result = (*(pDS18S20->DS18S20_PORT-2)) & (_BV(pDS18S20->DS18S20_PIN));
+	
+	delay_us(400);
+
+	return result;
+}
+
+/* Send a bit over 1-Wire interface. */
+void OWWriteBit(TSDS18S20 *pDS18S20, uint8_t bit)
+{
+	*(pDS18S20->DS18S20_PORT-1) |= _BV(pDS18S20->DS18S20_PIN);
+	
+	if (bit)
+	{
+		//Wite 1
+		delay_us(15);
+		*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
+		delay_us(45);
+	}
+	else
+	{
+		//Write 0
+		delay_us(60);
+		*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
+	}
+
+	return;
+}
+
+/* Read a bit from the 1-Wire interface. */
+uint8_t OWReadBit(TSDS18S20 *pDS18S20)
+{
+	uint8_t result=0;
+
+	*(pDS18S20->DS18S20_PORT-1) |= _BV(pDS18S20->DS18S20_PIN);
+	delay_us(4);
+	
+	*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
+	delay_us(8);
+	
+	if ((*(pDS18S20->DS18S20_PORT-2) & (_BV(pDS18S20->DS18S20_PIN)))) 
+		result=1;
+	
+	delay_us(48);
+	
+	return result;
+}
+
+/* Send a byte over 1-Wire interface starting with most significant bit. */
+void OWWriteByte(TSDS18S20 *pDS18S20, uint8_t value)
+{
+	uint8_t mask = 0x01;
+	
+	while (mask)
+	{
+		OWWriteBit(pDS18S20,value & mask);
+		mask <<= 1;
+	}
+}
+
+/* Read a byte form the 1-Wire interface. */
+uint8_t OWReadByte(TSDS18S20 *pDS18S20)
+{
+	uint8_t data = 0x00;
+	uint8_t mask = 0x01;
+	
+	while(mask)
+	{
+		if (OWReadBit(pDS18S20))
+			data |= mask;
+		mask <<= 1;
+	}
+	
+	return data;
+}
+
+/* Init function for DS18S20. */
+uint8_t DS18S20_Init(TSDS18S20 *pDS18S20,volatile uint8_t *DS18S20_PORT,uint8_t DS18S20_PIN)
+{
+	//Init ports/pins to which DS18S20 is attached.
+	pDS18S20->DS18S20_PORT = DS18S20_PORT;
+	pDS18S20->DS18S20_PIN = DS18S20_PIN;
+	
+	//Set DS18S20 PIN as input one and PORT bit to 0
+	*(pDS18S20->DS18S20_PORT) &= ~(_BV(pDS18S20->DS18S20_PIN));
+	*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
+	
+	return OWReset(pDS18S20);
+}
+
+/* Reads DS18S20 64-bit ROM code without using the Search ROM procedure. */
+uint8_t DS18S20_ReadROM(TSDS18S20 *pDS18S20)
 {
 	uint8_t i;
-	uint8_t *temp;
-	
-	temp=code;
-	OWWriteByte(READ_ROM);
-	
+		
+	OWWriteByte(pDS18S20,READ_ROM);
+
 	for(i=0;i<8;i++)
-		*code++=OWReadByte();
-	if (crc8(temp,7)==*(temp+7))
+		pDS18S20->serialNumber[i]=OWReadByte(pDS18S20);
+	
+	if (crc8(pDS18S20->serialNumber,7)==pDS18S20->serialNumber[7])
 		return 1;
 	else
 		return 0;
-	
 }
 
-// Start temperature conversion.
-void StartConvertTemperature()
+/* This functions initiates a single temperature conversion. */
+void DS18S20_MeasureTemperature(TSDS18S20 *pDS18S20)
 {
-	uint8_t sreg;
-		
-	// Sochuvaj ja sostojbata na SREG i onevozmozi interapt
-	sreg=SREG;
-	cli();
+	OWReset(pDS18S20);
+	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
+	OWWriteByte(pDS18S20,CONVERT_T);
 	
-	// Isprati naredba za konverzija
-	OWWriteByte(CONVERT_T);
+	//while(!OWReadBit(pDS18S20));
+	delay_ms(750);
 	
-	// Konfiguriranje na portot PD5 kako vlezen portot
-	DS18S20_PORT &= ~(_BV(DS18S20_DQ));
-	DS18S20_DDR &= ~(_BV(DS18S20_DQ));
-	
-	// Chekaj dodeka ne zavrshi konverzijata.
-	while(!(DS18S20_PIN & _BV(DS18S20_DQ)));
-	
-	sei();
-	SREG=sreg;
+	return;
 }
 
-/* Read DS18x20 scratch pad and check the integrity with CRC. */
-uint8_t ReadDS18S20ScratchPad(uint8_t *scratchpad)
+/* Read the content of DS18S20 scratchpad and check the integrity with CRC. */
+uint8_t DS18S20_ReadScratchPad(TSDS18S20 *pDS18S20)
 {
 	uint8_t i;
-	uint8_t *temp;
 	
-	temp=scratchpad;
-	OWWriteByte(READ_SCRATCHPAD);
+	OWReset(pDS18S20);
+	DS18S20_SendCommand(pDS18S20,SKIP_ROM);	
+	OWWriteByte(pDS18S20,READ_SCRATCHPAD);
 	
 	for(i=0;i<9;i++)
-		*scratchpad++=OWReadByte();
-	if (crc8(temp,8)==*(temp+8))
+		pDS18S20->scratchpad[i]=OWReadByte(pDS18S20);
+		
+	if (crc8(pDS18S20->scratchpad,8)==pDS18S20->scratchpad[8])
 		return 1;
 	else
 		return 0;
-
 }
