@@ -36,7 +36,7 @@ int main(void)
 	
 	uint8_t i;
 	
-	//AVR serial port init
+	// AVR serial port init.
 	USART_init(103);
 	
 	if (DS18S20_Init(pDS18S20,&PORTD,PD5))
@@ -48,9 +48,10 @@ int main(void)
 		USART_SendString("Connected to DS1820 with serial number:");
 	USART_SendChar(0x0D);
 
+	//Read 64-bit ROM code without using the Search ROM procedure. 
 	if (DS18S20_ReadROM(pDS18S20))
 	{
-		// Send the sensor address via serial port
+		// Send the sensor address via serial port.
 		for(i=1;i<7;i++)
 		{
 			USART_sendHex(pDS18S20->serialNumber[i]);
@@ -63,17 +64,13 @@ int main(void)
 	else
 		USART_SendString("CRC error!!!");
 	
-	// Initiate temperature conversion
-	//OWReset(pDS18S20);
-	//DS18S20_SendCommand(pDS18S20,SKIP_ROM);
+	// Initiate temperature conversion.
 	DS18S20_MeasureTemperature(pDS18S20);
 		
-	// Read DS18S20 scratchpad content to get the registries with temperature reading
-	//OWReset(pDS18S20);	
-	//DS18S20_SendCommand(pDS18S20,SKIP_ROM);
+	// Read DS18S20 scratchpad content to get the registries with temperature reading.
 	if (DS18S20_ReadScratchPad(pDS18S20))
 	{
-		// Send the value of the temperature registers over serial port
+		// Send the value of the temperature registers over serial port.
 		USART_SendString("Current Temperature is:");
 		ConvertTemperature2String(pDS18S20->scratchpad[1],pDS18S20->scratchpad[0]);
 		USART_SendChar(0x0D);

@@ -11,7 +11,7 @@ The library is compatible with every 8-bit AVR microcontroller.
 DS1820 support and implemented functions
 
 The library can be used only in cases when DS18S20 sensor is powered by external power supply.
-The library doesn't query the sensor for the type of the power supply.
+It doesn't query the sensor for the type of the power supply.
 
 Current version supports 1-Wire bus with only one device attached to it.
 SEARCH_ROM is not implemented in the library so it cannot query the bus for connected devices/sensors.
@@ -34,8 +34,11 @@ For example:
 
 DS18S20_Init(pDS18S20,&PORTD,PD5);
 
+The first argument is a pointer to the structure that represents the sensor. See 
+the documentation section for further details.
+
 After the initialization step, the rest of the library functions/macros can be used to
-get sensor address, start temperature conversion and read the sensor memory that contains 
+get the address of the sensor, start a temperature conversion and read the sensor memory that contains 
 the temperature value.
 
 Check the doc folder for detailed describtion of the library.
