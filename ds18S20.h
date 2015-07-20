@@ -211,9 +211,25 @@ void DS18S20_MeasureTemperature(TSDS18S20 *pDS18S20);
  * @return uint8_t 0 if CRC error is detected, 1 for successful scratchpad read.
  */	
 uint8_t DS18S20_ReadScratchPad(TSDS18S20 *pDS18S20);
+
+/**
+ * @brief Returns the power supply type based on the respond from the sensor on Read Power Supply 
+ * function command.
+ * 
+ * @param[in] pDS18S20 pointer to the structure that represent DS18S20
+ * @return uint8_t 0 for the parasite powered, 1 for externally powered sensor.
+ */	
+uint8_t DS18S20_PowerSupplyType(TSDS18S20 *pDS18S20);
+
+/**
+ * @brief Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers).
+ * 
+ * @param[in] pDS18S20 pointer to the structure that represent DS18S20
+ * @param[in] TH value of the TH register
+ * @param[in] TL value of the TL register 
+ * @return void
+ */	
+void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL);
 /* @} */
 
 #endif /* DS18S20_H_ */
-
-
-

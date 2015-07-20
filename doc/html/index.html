@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>HD44780 library: DS18S20library</title>
+<title>DS18S20 library: DS18S20library</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -17,10 +17,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">HD44780 library
+   <div id="projectname">DS18S20 library
    &#160;<span id="projectnumber">v1.0</span>
    </div>
-   <div id="projectbrief">HD44780 library in C for AVR 8-bit microcontrollers</div>
+   <div id="projectbrief">DS18S20 library in C for AVR 8-bit microcontrollers</div>
   </td>
  </tr>
  </tbody>
@@ -54,13 +54,18 @@ Supported MCU Hardware</h1>
 DS1820 support and implemented functions</h1>
 <p>The library can be used only in cases when DS18S20 sensor is powered by external power supply. The library doesn't query the sensor for the type of the power supply.</p>
 <p>Current version supports 1-Wire bus with only one device attached to it. SEARCH_ROM is not implemented in the library so it cannot query the bus for connected devices/sensors.</p>
-<p>Implemented DS1820 functions:</p>
+<p>Implemented DS18S20 ROM Commands:</p>
 <ul>
 <li>DS18S20 sensor initialization;</li>
 <li>READ ROM command for fetching the ROM address of the sensor;</li>
 <li>SKIP ROM command so the library can speak to the sensor directly without using sensors 1-Wire bus address;</li>
+</ul>
+<p>Implemented DS18S20 Function Commands:</p>
+<ul>
 <li>Convert T command that initiates a single temperature conversion;</li>
 <li>READ SCRATCHPAD command that allows the master to read the contents of the sensor memory.</li>
+<li>READ POWER SUPPLY command to determine power supply type of DS18S20.</li>
+<li>WRITE SCRATCHPAD command that allows the master to write 2 bytes of data to the scratchpad of DS18S20.</li>
 </ul>
 <h1><a class="anchor" id="use"></a>
 Usage</h1>
@@ -71,13 +76,14 @@ Usage</h1>
 </ul>
 <p>For example:</p>
 <p>DS18S20_Init(pDS18S20,&amp;PORTD,PD5);</p>
+<p>The first argument is a pointer to the structure that represents the sensor. See the documentation section for further details.</p>
 <p>After the initialization step, the rest of the library functions/macros can be used to get sensor address, start temperature conversion and read the sensor memory that contains the temperature value.</p>
 <p>Tested on Atmega32 and Atiny2313 microcontrollers.</p>
 <dl class="section warning"><dt>Warning</dt><dd>The source is provided as it is without any warranty. Use it on your own risk! The author does not take any responsibility for the damage caused while using this software. </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 19 2015 00:20:18 for HD44780 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 20 2015 23:00:31 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

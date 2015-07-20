@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>HD44780 library: DS18S20 functions</title>
+<title>DS18S20 library: DS18S20 functions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -17,10 +17,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">HD44780 library
+   <div id="projectname">DS18S20 library
    &#160;<span id="projectnumber">v1.0</span>
    </div>
-   <div id="projectbrief">HD44780 library in C for AVR 8-bit microcontrollers</div>
+   <div id="projectbrief">DS18S20 library in C for AVR 8-bit microcontrollers</div>
   </td>
  </tr>
  </tbody>
@@ -47,7 +47,7 @@
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gab6b949feebc08b85a3898200a222f357"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#gab6b949feebc08b85a3898200a222f357">DS18S20_Init</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20, volatile uint8_t *<a class="el" href="OWcomm_8h.html#a0481ac2a54be128d6c170293a924face">DS18S20_PORT</a>, uint8_t <a class="el" href="OWcomm_8h.html#a8ff732a45b3b65d5233291eec91b14dd">DS18S20_PIN</a>)</td></tr>
+<tr class="memitem:gab6b949feebc08b85a3898200a222f357"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#gab6b949feebc08b85a3898200a222f357">DS18S20_Init</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20, volatile uint8_t *DS18S20_PORT, uint8_t DS18S20_PIN)</td></tr>
 <tr class="memdesc:gab6b949feebc08b85a3898200a222f357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init function for DS18S20. The function prepares the 1-Wire bus and runs the sensors initialization procedure.  <a href="#gab6b949feebc08b85a3898200a222f357">More...</a><br/></td></tr>
 <tr class="separator:gab6b949feebc08b85a3898200a222f357"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga421ab051ba3e3fb5028e88f3fbe64a5b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga421ab051ba3e3fb5028e88f3fbe64a5b">DS18S20_ReadROM</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
@@ -59,6 +59,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gaa51f8231f60e8ef7bb6e3252cf5d33b7"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#gaa51f8231f60e8ef7bb6e3252cf5d33b7">DS18S20_ReadScratchPad</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
 <tr class="memdesc:gaa51f8231f60e8ef7bb6e3252cf5d33b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the contents of DS18S20 scratchpad.  <a href="#gaa51f8231f60e8ef7bb6e3252cf5d33b7">More...</a><br/></td></tr>
 <tr class="separator:gaa51f8231f60e8ef7bb6e3252cf5d33b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3cf2131ec2edb8e454ce957da0eee850"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga3cf2131ec2edb8e454ce957da0eee850">DS18S20_PowerSupplyType</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
+<tr class="memdesc:ga3cf2131ec2edb8e454ce957da0eee850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the power supply type based on the respond from the sensor on Read Power Supply function command.  <a href="#ga3cf2131ec2edb8e454ce957da0eee850">More...</a><br/></td></tr>
+<tr class="separator:ga3cf2131ec2edb8e454ce957da0eee850"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga805482df7842d24263d3e6c6aa116d1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga805482df7842d24263d3e6c6aa116d1c">DS18S20_WriteScratchpad</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20, uint8_t TH, uint8_t TL)</td></tr>
+<tr class="memdesc:ga805482df7842d24263d3e6c6aa116d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers).  <a href="#ga805482df7842d24263d3e6c6aa116d1c">More...</a><br/></td></tr>
+<tr class="separator:ga805482df7842d24263d3e6c6aa116d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -130,6 +136,31 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ga3cf2131ec2edb8e454ce957da0eee850"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t DS18S20_PowerSupplyType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *&#160;</td>
+          <td class="paramname"><em>pDS18S20</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the power supply type based on the respond from the sensor on Read Power Supply function command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pDS18S20</td><td>pointer to the structure that represent DS18S20 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t 0 for the parasite powered, 1 for externally powered sensor. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ga421ab051ba3e3fb5028e88f3fbe64a5b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -180,10 +211,53 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ga805482df7842d24263d3e6c6aa116d1c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DS18S20_WriteScratchpad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *&#160;</td>
+          <td class="paramname"><em>pDS18S20</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>TH</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>TL</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pDS18S20</td><td>pointer to the structure that represent DS18S20 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">TH</td><td>value of the TH register </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">TL</td><td>value of the TL register </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 19 2015 00:20:18 for HD44780 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 20 2015 23:00:31 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

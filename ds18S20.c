@@ -193,3 +193,27 @@ uint8_t DS18S20_ReadScratchPad(TSDS18S20 *pDS18S20)
 	else
 		return 0;
 }
+
+/* Returns the power supply type based on the respond from the sensor on Read Power Supply function command. */
+uint8_t DS18S20_PowerSupplyType(TSDS18S20 *pDS18S20)
+{
+	OWReset(pDS18S20);
+	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
+	DS18S20_SendCommand(pDS18S20,READ_POWER_SUPPLY);
+	
+	return OWReadBit(pDS18S20);	
+}
+
+/* Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers).*/
+void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL)
+{
+	OWReset(pDS18S20);
+	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
+	DS18S20_SendCommand(pDS18S20,WRITE_SCRATCHPAD);
+	
+	OWWriteByte(pDS18S20,TH);
+	OWWriteByte(pDS18S20,TL);
+
+	return;
+}
+

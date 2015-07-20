@@ -16,12 +16,16 @@ It doesn't query the sensor for the type of the power supply.
 Current version supports 1-Wire bus with only one device attached to it.
 SEARCH_ROM is not implemented in the library so it cannot query the bus for connected devices/sensors.
 
-Implemented DS1820 functions:
+Implemented DS18S20 ROM Commands:
 - DS18S20 sensor initialization;
 - READ ROM command for fetching the ROM address of the sensor;
 - SKIP ROM command so the library can speak to the sensor directly without using sensors 1-Wire bus address;
+
+Implemented DS18S20 Function Commands:
 - Convert T command that initiates a single temperature conversion;
 - READ SCRATCHPAD command that allows the master to read the contents of the sensor memory.
+- READ POWER SUPPLY command to determine power supply type of DS18S20.
+- WRITE SCRATCHPAD command that allows the master to write 2 bytes of data to the scratchpad of DS18S20.
  
 Usage
 
