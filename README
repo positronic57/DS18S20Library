@@ -23,10 +23,11 @@ Implemented DS18S20 ROM Commands:
 
 Implemented DS18S20 Function Commands:
 - Convert T command that initiates a single temperature conversion;
-- READ SCRATCHPAD command that allows the master to read the contents of the sensor memory.
-- READ POWER SUPPLY command to determine power supply type of DS18S20.
-- WRITE SCRATCHPAD command that allows the master to write 2 bytes of data to the scratchpad of DS18S20.
- 
+- READ SCRATCHPAD command that allows the master to read the contents of the sensor memory;
+- READ POWER SUPPLY command to determine power supply type of DS18S20;
+- WRITE SCRATCHPAD command that allows the master to write 2 bytes of data to the scratchpad of DS18S20;
+- COPY SCRATCHPAD command that copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM. 
+
 Usage
 
 The library use DS18S20_Init function to define the 1-Wire bus and initialize the sensor.

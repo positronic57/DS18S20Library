@@ -65,9 +65,37 @@ Functions</h2></td></tr>
 <tr class="memitem:ga805482df7842d24263d3e6c6aa116d1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga805482df7842d24263d3e6c6aa116d1c">DS18S20_WriteScratchpad</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20, uint8_t TH, uint8_t TL)</td></tr>
 <tr class="memdesc:ga805482df7842d24263d3e6c6aa116d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers).  <a href="#ga805482df7842d24263d3e6c6aa116d1c">More...</a><br/></td></tr>
 <tr class="separator:ga805482df7842d24263d3e6c6aa116d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6cfa4a19f45d7d72f6afd65e259a2381"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga6cfa4a19f45d7d72f6afd65e259a2381">DS18S20_CopyScratchpad</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
+<tr class="memdesc:ga6cfa4a19f45d7d72f6afd65e259a2381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM.  <a href="#ga6cfa4a19f45d7d72f6afd65e259a2381">More...</a><br/></td></tr>
+<tr class="separator:ga6cfa4a19f45d7d72f6afd65e259a2381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ga6cfa4a19f45d7d72f6afd65e259a2381"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DS18S20_CopyScratchpad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *&#160;</td>
+          <td class="paramname"><em>pDS18S20</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pDS18S20</td><td>pointer to the structure that represent DS18S20 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="gab6b949feebc08b85a3898200a222f357"></a>
 <div class="memitem">
 <div class="memproto">
@@ -257,7 +285,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 23:00:31 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 21 2015 21:41:18 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

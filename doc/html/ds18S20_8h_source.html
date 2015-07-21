@@ -151,9 +151,11 @@
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;uint8_t <a class="code" href="group__DS18S20func.html#ga3cf2131ec2edb8e454ce957da0eee850">DS18S20_PowerSupplyType</a>(<a class="code" href="structSDS18S20.html">TSDS18S20</a> *pDS18S20);</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__DS18S20func.html#ga805482df7842d24263d3e6c6aa116d1c">DS18S20_WriteScratchpad</a>(<a class="code" href="structSDS18S20.html">TSDS18S20</a> *pDS18S20, uint8_t TH, uint8_t TL);</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">/* @} */</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DS18S20_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__DS18S20func.html#ga6cfa4a19f45d7d72f6afd65e259a2381">DS18S20_CopyScratchpad</a>(<a class="code" href="structSDS18S20.html">TSDS18S20</a> *pDS18S20);</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">/* @} */</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DS18S20_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="group__DS18S20func_html_ga2059f70099e5cf01c026cac1718383a6"><div class="ttname"><a href="group__DS18S20func.html#ga2059f70099e5cf01c026cac1718383a6">DS18S20_MeasureTemperature</a></div><div class="ttdeci">void DS18S20_MeasureTemperature(TSDS18S20 *pDS18S20)</div><div class="ttdoc">This functions initiates a single temperature conversion. </div><div class="ttdef"><b>Definition:</b> ds18S20.c:167</div></div>
 <div class="ttc" id="structSDS18S20_html_a298e9901b8d24a232ed4b1742f37fac7"><div class="ttname"><a href="structSDS18S20.html#a298e9901b8d24a232ed4b1742f37fac7">SDS18S20::DS18S20_PORT</a></div><div class="ttdeci">volatile uint8_t * DS18S20_PORT</div><div class="ttdef"><b>Definition:</b> ds18S20.h:116</div></div>
 <div class="ttc" id="group__DS18S20func_html_ga421ab051ba3e3fb5028e88f3fbe64a5b"><div class="ttname"><a href="group__DS18S20func.html#ga421ab051ba3e3fb5028e88f3fbe64a5b">DS18S20_ReadROM</a></div><div class="ttdeci">uint8_t DS18S20_ReadROM(TSDS18S20 *pDS18S20)</div><div class="ttdoc">Reads DS18S20 64-bit ROM code without using the Search ROM procedure. </div><div class="ttdef"><b>Definition:</b> ds18S20.c:151</div></div>
@@ -161,6 +163,7 @@
 <div class="ttc" id="group__OneWire_html_ga8d071adfe117dd33a59231199024c32b"><div class="ttname"><a href="group__OneWire.html#ga8d071adfe117dd33a59231199024c32b">OWReadBit</a></div><div class="ttdeci">uint8_t OWReadBit(TSDS18S20 *pDS18S20)</div><div class="ttdef"><b>Definition:</b> ds18S20.c:90</div></div>
 <div class="ttc" id="group__DS18S20func_html_ga805482df7842d24263d3e6c6aa116d1c"><div class="ttname"><a href="group__DS18S20func.html#ga805482df7842d24263d3e6c6aa116d1c">DS18S20_WriteScratchpad</a></div><div class="ttdeci">void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL)</div><div class="ttdoc">Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers). </div><div class="ttdef"><b>Definition:</b> ds18S20.c:208</div></div>
 <div class="ttc" id="group__OneWire_html_gaea5b8c65b686d9813df444ec82eebfad"><div class="ttname"><a href="group__OneWire.html#gaea5b8c65b686d9813df444ec82eebfad">OWReadByte</a></div><div class="ttdeci">uint8_t OWReadByte(TSDS18S20 *pDS18S20)</div><div class="ttdef"><b>Definition:</b> ds18S20.c:121</div></div>
+<div class="ttc" id="group__DS18S20func_html_ga6cfa4a19f45d7d72f6afd65e259a2381"><div class="ttname"><a href="group__DS18S20func.html#ga6cfa4a19f45d7d72f6afd65e259a2381">DS18S20_CopyScratchpad</a></div><div class="ttdeci">void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20)</div><div class="ttdoc">Copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM. </div><div class="ttdef"><b>Definition:</b> ds18S20.c:221</div></div>
 <div class="ttc" id="group__DS18S20func_html_ga3cf2131ec2edb8e454ce957da0eee850"><div class="ttname"><a href="group__DS18S20func.html#ga3cf2131ec2edb8e454ce957da0eee850">DS18S20_PowerSupplyType</a></div><div class="ttdeci">uint8_t DS18S20_PowerSupplyType(TSDS18S20 *pDS18S20)</div><div class="ttdoc">Returns the power supply type based on the respond from the sensor on Read Power Supply function comm...</div><div class="ttdef"><b>Definition:</b> ds18S20.c:198</div></div>
 <div class="ttc" id="group__time_html_ga9cc720be418a9ce74eed0e8402a15efd"><div class="ttname"><a href="group__time.html#ga9cc720be418a9ce74eed0e8402a15efd">delayloop32</a></div><div class="ttdeci">void delayloop32(uint32_t l)</div><div class="ttdoc">Precise Delay Functions V 0.5, Martin Thomas, 9/2004. </div><div class="ttdef"><b>Definition:</b> ds18S20.c:28</div></div>
 <div class="ttc" id="group__OneWire_html_ga78b16ca709b7322a8ccf05a1bc72adfc"><div class="ttname"><a href="group__OneWire.html#ga78b16ca709b7322a8ccf05a1bc72adfc">OWReset</a></div><div class="ttdeci">uint8_t OWReset(TSDS18S20 *pDS18S20)</div><div class="ttdef"><b>Definition:</b> ds18S20.c:50</div></div>
@@ -176,7 +179,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 23:00:31 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 21 2015 21:41:18 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

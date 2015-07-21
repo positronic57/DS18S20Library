@@ -217,3 +217,16 @@ void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL)
 	return;
 }
 
+/* Copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM. */
+void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20)
+{
+	OWReset(pDS18S20);
+	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
+	DS18S20_SendCommand(pDS18S20,COPY_SCRATCHPAD);
+	
+	while(!OWReadBit(pDS18S20));
+		
+	return;
+}
+
+

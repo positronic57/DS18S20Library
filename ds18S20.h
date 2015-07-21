@@ -230,6 +230,15 @@ uint8_t DS18S20_PowerSupplyType(TSDS18S20 *pDS18S20);
  * @return void
  */	
 void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL);
+
+/**
+ * @brief Copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM.
+ *
+ * @param [in] pDS18S20 pointer to the structure that represent DS18S20
+ * @return void
+ *
+ */
+void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20);
 /* @} */
 
 #endif /* DS18S20_H_ */
