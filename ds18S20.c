@@ -229,4 +229,17 @@ void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20)
 	return;
 }
 
+/* Recalls the alarm trigger values (TH and TL) from EEPROM. */
+void DS18S20_RECALL_E2(TSDS18S20 *pDS18S20)
+{
+	OWReset(pDS18S20);
+	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
+	DS18S20_SendCommand(pDS18S20,RECALL_E2);
+	
+	while(!OWReadBit(pDS18S20));
+	
+	return;
+}
+
+
 

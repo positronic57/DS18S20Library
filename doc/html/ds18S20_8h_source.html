@@ -153,9 +153,11 @@
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__DS18S20func.html#ga805482df7842d24263d3e6c6aa116d1c">DS18S20_WriteScratchpad</a>(<a class="code" href="structSDS18S20.html">TSDS18S20</a> *pDS18S20, uint8_t TH, uint8_t TL);</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__DS18S20func.html#ga6cfa4a19f45d7d72f6afd65e259a2381">DS18S20_CopyScratchpad</a>(<a class="code" href="structSDS18S20.html">TSDS18S20</a> *pDS18S20);</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">/* @} */</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DS18S20_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__DS18S20func.html#gae2eae967f7e0bf3dca5115d5bff5cd0d">DS18S20_RECALL_E2</a>(<a class="code" href="structSDS18S20.html">TSDS18S20</a> *pDS18S20);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">/* @} */</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DS18S20_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="group__DS18S20func_html_ga2059f70099e5cf01c026cac1718383a6"><div class="ttname"><a href="group__DS18S20func.html#ga2059f70099e5cf01c026cac1718383a6">DS18S20_MeasureTemperature</a></div><div class="ttdeci">void DS18S20_MeasureTemperature(TSDS18S20 *pDS18S20)</div><div class="ttdoc">This functions initiates a single temperature conversion. </div><div class="ttdef"><b>Definition:</b> ds18S20.c:167</div></div>
 <div class="ttc" id="structSDS18S20_html_a298e9901b8d24a232ed4b1742f37fac7"><div class="ttname"><a href="structSDS18S20.html#a298e9901b8d24a232ed4b1742f37fac7">SDS18S20::DS18S20_PORT</a></div><div class="ttdeci">volatile uint8_t * DS18S20_PORT</div><div class="ttdef"><b>Definition:</b> ds18S20.h:116</div></div>
 <div class="ttc" id="group__DS18S20func_html_ga421ab051ba3e3fb5028e88f3fbe64a5b"><div class="ttname"><a href="group__DS18S20func.html#ga421ab051ba3e3fb5028e88f3fbe64a5b">DS18S20_ReadROM</a></div><div class="ttdeci">uint8_t DS18S20_ReadROM(TSDS18S20 *pDS18S20)</div><div class="ttdoc">Reads DS18S20 64-bit ROM code without using the Search ROM procedure. </div><div class="ttdef"><b>Definition:</b> ds18S20.c:151</div></div>
@@ -171,6 +173,7 @@
 <div class="ttc" id="group__OneWire_html_ga082b79730de5e55945697edd8271bb55"><div class="ttname"><a href="group__OneWire.html#ga082b79730de5e55945697edd8271bb55">OWWriteBit</a></div><div class="ttdeci">void OWWriteBit(TSDS18S20 *pDS18S20, uint8_t bit)</div><div class="ttdef"><b>Definition:</b> ds18S20.c:68</div></div>
 <div class="ttc" id="group__OneWire_html_gadfcae4ef42906f1c6143c1a602d6dd4f"><div class="ttname"><a href="group__OneWire.html#gadfcae4ef42906f1c6143c1a602d6dd4f">OWWriteByte</a></div><div class="ttdeci">void OWWriteByte(TSDS18S20 *pDS18S20, uint8_t value)</div><div class="ttdef"><b>Definition:</b> ds18S20.c:109</div></div>
 <div class="ttc" id="structSDS18S20_html_ad13e643cd7b34aa3458c5c2794f052be"><div class="ttname"><a href="structSDS18S20.html#ad13e643cd7b34aa3458c5c2794f052be">SDS18S20::DS18S20_PIN</a></div><div class="ttdeci">uint8_t DS18S20_PIN</div><div class="ttdef"><b>Definition:</b> ds18S20.h:117</div></div>
+<div class="ttc" id="group__DS18S20func_html_gae2eae967f7e0bf3dca5115d5bff5cd0d"><div class="ttname"><a href="group__DS18S20func.html#gae2eae967f7e0bf3dca5115d5bff5cd0d">DS18S20_RECALL_E2</a></div><div class="ttdeci">void DS18S20_RECALL_E2(TSDS18S20 *pDS18S20)</div><div class="ttdoc">Recalls the alarm trigger values (TH and TL) from EEPROM. </div><div class="ttdef"><b>Definition:</b> ds18S20.c:233</div></div>
 <div class="ttc" id="structSDS18S20_html_a71f3e11fc3b7f78fb3d175fe47943206"><div class="ttname"><a href="structSDS18S20.html#a71f3e11fc3b7f78fb3d175fe47943206">SDS18S20::scratchpad</a></div><div class="ttdeci">uint8_t scratchpad[9]</div><div class="ttdef"><b>Definition:</b> ds18S20.h:119</div></div>
 <div class="ttc" id="ds18S20_8h_html_a85f18913f84481c1e2e3dd88c958ecfb"><div class="ttname"><a href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a></div><div class="ttdeci">struct SDS18S20 TSDS18S20</div><div class="ttdoc">Represents the DS18S20 sensor including the 1-Wire bus configuration (MCU PORT and PIN selected for D...</div></div>
 <div class="ttc" id="group__DS18S20func_html_gaa51f8231f60e8ef7bb6e3252cf5d33b7"><div class="ttname"><a href="group__DS18S20func.html#gaa51f8231f60e8ef7bb6e3252cf5d33b7">DS18S20_ReadScratchPad</a></div><div class="ttdeci">uint8_t DS18S20_ReadScratchPad(TSDS18S20 *pDS18S20)</div><div class="ttdoc">Read the contents of DS18S20 scratchpad. </div><div class="ttdef"><b>Definition:</b> ds18S20.c:180</div></div>
@@ -179,7 +182,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 21 2015 21:41:18 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 23 2015 00:06:36 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

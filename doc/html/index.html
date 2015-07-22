@@ -58,7 +58,7 @@ DS1820 support and implemented functions</h1>
 <ul>
 <li>DS18S20 sensor initialization;</li>
 <li>READ ROM command for fetching the ROM address of the sensor;</li>
-<li>SKIP ROM command so the library can speak to the sensor directly without using sensors 1-Wire bus address;</li>
+<li>SKIP ROM command so the library can speak to the sensor directly without using sensors 1-Wire bus address.</li>
 </ul>
 <p>Implemented DS18S20 Function Commands:</p>
 <ul>
@@ -66,7 +66,8 @@ DS1820 support and implemented functions</h1>
 <li>READ SCRATCHPAD command that allows the master to read the contents of the sensor memory;</li>
 <li>READ POWER SUPPLY command to determine power supply type of DS18S20;</li>
 <li>WRITE SCRATCHPAD command that allows the master to write 2 bytes of data to the scratchpad of DS18S20;</li>
-<li>COPY SCRATCHPAD command that copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM.</li>
+<li>COPY SCRATCHPAD command that copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM;</li>
+<li>RECALL E2 recalls the alarm trigger values (TH and TL) from EEPROM of the sensor.</li>
 </ul>
 <h1><a class="anchor" id="use"></a>
 Usage</h1>
@@ -84,7 +85,7 @@ Usage</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 21 2015 21:41:18 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 23 2015 00:06:36 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

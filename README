@@ -19,14 +19,15 @@ SEARCH_ROM is not implemented in the library so it cannot query the bus for conn
 Implemented DS18S20 ROM Commands:
 - DS18S20 sensor initialization;
 - READ ROM command for fetching the ROM address of the sensor;
-- SKIP ROM command so the library can speak to the sensor directly without using sensors 1-Wire bus address;
+- SKIP ROM command so the library can speak to the sensor directly without using sensors 1-Wire bus address.
 
 Implemented DS18S20 Function Commands:
 - Convert T command that initiates a single temperature conversion;
 - READ SCRATCHPAD command that allows the master to read the contents of the sensor memory;
 - READ POWER SUPPLY command to determine power supply type of DS18S20;
 - WRITE SCRATCHPAD command that allows the master to write 2 bytes of data to the scratchpad of DS18S20;
-- COPY SCRATCHPAD command that copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM. 
+- COPY SCRATCHPAD command that copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM;
+- RECALL E2 recalls the alarm trigger values (TH and TL) from EEPROM of the sensor.
 
 Usage
 
