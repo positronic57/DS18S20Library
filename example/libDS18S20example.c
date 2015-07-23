@@ -27,7 +27,7 @@
 #include "UART.h"
 
 //Calculates the temperature and sends it via serial port
-void ConvertTemperature2String(char,char);
+void ConvertTemperature2String(uint8_t LSB, uint8_t MSB);
 
 int main(void)
 {
@@ -36,7 +36,7 @@ int main(void)
 	
 	uint8_t i;
 	
-	// AVR serial port init.
+	//AVR serial port init
 	USART_init(103);
 	
 	if (DS18S20_Init(pDS18S20,&PORTD,PD5))
@@ -48,10 +48,9 @@ int main(void)
 		USART_SendString("Connected to DS1820 with serial number:");
 	USART_SendChar(0x0D);
 
-	//Read 64-bit ROM code without using the Search ROM procedure. 
 	if (DS18S20_ReadROM(pDS18S20))
 	{
-		// Send the sensor address via serial port.
+		// Send the sensor address via serial port
 		for(i=1;i<7;i++)
 		{
 			USART_sendHex(pDS18S20->serialNumber[i]);
@@ -64,15 +63,21 @@ int main(void)
 	else
 		USART_SendString("CRC error!!!");
 	
-	// Initiate temperature conversion.
+	if (DS18S20_PowerSupplyType(pDS18S20))
+		USART_SendString("The sensor is externally powered.");
+	else
+		USART_SendString("The sensor is parasite powered.");		
+	USART_SendChar(0x0D);
+	
+	DS18S20_CopyScratchpad(pDS18S20);
+	
 	DS18S20_MeasureTemperature(pDS18S20);
 		
-	// Read DS18S20 scratchpad content to get the registries with temperature reading.
 	if (DS18S20_ReadScratchPad(pDS18S20))
 	{
-		// Send the value of the temperature registers over serial port.
+		// Send the value of the temperature registers over serial port
 		USART_SendString("Current Temperature is:");
-		ConvertTemperature2String(pDS18S20->scratchpad[1],pDS18S20->scratchpad[0]);
+		ConvertTemperature2String(pDS18S20->scratchpad[0],pDS18S20->scratchpad[1]);
 		USART_SendChar(0x0D);
 	}
 	else
@@ -84,37 +89,39 @@ int main(void)
 
 }
 
-void ConvertTemperature2String(char TH,char TL)
+void ConvertTemperature2String(uint8_t LSB, uint8_t MSB)
 {
-	char delitel=10;
-	char tmp;
-
-	tmp=TL;
-	TL >>=1;
-	TL &=0x7F;
-	if (TH)
+	uint8_t	temp = LSB;
+	uint8_t delitel = 100;
+	
+	if (MSB)
 	{
-		TL=127-TL;
+		/* LSB represents number of 0.5C in actual temperature value. 
+		 * LSB uses two complement format for representing signed integer values.
+		 */
+		temp = ~temp + 1;
 		USART_SendChar('-');
 	}
 	else
-	USART_SendChar('+');
-	if (TL==-1)
-	USART_SendChar('0');
-	else
+		USART_SendChar('+');
+
+	temp >>= 1;
+	//Eliminate leading zeros
+	while(!(temp/delitel))
+		delitel/=10;
+	do
 	{
-		do
-		{
-			USART_SendChar('0'+TL/delitel);
-			TL%=delitel;
-			delitel/=10;
-		}while(TL);
-	}
+		USART_SendChar('0'+temp/delitel);
+		temp %= delitel;
+		delitel /= 10;
+	}while(temp);
+	
 	USART_SendChar('.');
-	if (tmp&1)
+	if (LSB & 0x01)
 		USART_SendChar('5');
 	else
 		USART_SendChar('0');
+	
 	USART_SendChar('C');
 	USART_SendChar(0x0D);
 	
