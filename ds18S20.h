@@ -248,6 +248,21 @@ void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20);
  *
  */
 void DS18S20_RECALL_E2(TSDS18S20 *pDS18S20);
+
+/**
+ * @brief sends function commands to DS18S20.
+ *
+ * @param [in,out] pDS18S20 pointer to the structure that represent DS18S20
+ * @param [in] funCommand function command to be send.  
+ * @return int8_t depending of the submited command, the function returns different values.
+ * @return Return codes:
+ * @return - In case of READ_SCRATCHPAD command, it returns: 0 if CRC error is detected, 1 for successful scratchpad read;
+ * @return - For READ_POWER_SUPPLAY command it returns: 1 for external power supply, 0 for parasite powered sensor;
+ * @return - For all other commnads the default return value is 1;
+ * @return - returns -2 in case of unkown function command;
+ * @return - returns -1 in case of failed OWReset().
+ */
+int8_t DS18S20_SendFunCommand(TSDS18S20 *pDS18S20, uint8_t funCommand);
 /* @} */
 
 #endif /* DS18S20_H_ */

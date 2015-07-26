@@ -241,5 +241,65 @@ void DS18S20_RECALL_E2(TSDS18S20 *pDS18S20)
 	return;
 }
 
+/* Sends function commands to DS18S20. */
+int8_t DS18S20_SendFunCommand(TSDS18S20 *pDS18S20, uint8_t funCommand)
+{
+	int8_t relust = 1;
+	
+	if (OWReset(pDS18S20))
+		return -1;	//failed OWReset command. Sensor not present or didn't reply to OWReset.
+	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
+	
+	switch (funCommand)
+	{
+		case RECALL_E2:
+		{
+			DS18S20_SendCommand(pDS18S20,RECALL_E2);
+			while(!OWReadBit(pDS18S20));
+			break;
+		}
+		case COPY_SCRATCHPAD:
+		{
+			DS18S20_SendCommand(pDS18S20,COPY_SCRATCHPAD);
+			while(!OWReadBit(pDS18S20));
+			break;
+		}
+		case WRITE_SCRATCHPAD:
+		{
+			DS18S20_SendCommand(pDS18S20,WRITE_SCRATCHPAD);
+			OWWriteByte(pDS18S20,TH);
+			OWWriteByte(pDS18S20,TL);
+			break;
+		}
+		case READ_POWER_SUPPLY:
+		{
+			DS18S20_SendCommand(pDS18S20,READ_POWER_SUPPLY);
+			result = OWReadBit(pDS18S20);	
+			break;
+		}
+		case READ_SCRATCHPAD:
+		{
+			uint8_t i;
+			DS18S20_SendCommand(pDS18S20,READ_SCRATCHPAD);
+			for(i=0;i<9;i++)
+				pDS18S20->scratchpad[i]=OWReadByte(pDS18S20);
+			if (crc8(pDS18S20->scratchpad,8)==pDS18S20->scratchpad[8])
+				result = 1;
+			else
+				result = 0;
+			break;
+		}
+		case CONVERT_T:
+		{
+			OWWriteByte(pDS18S20,CONVERT_T);
+			delay_ms(750);
+			break;
+		}
+		default:
+			result = -2;
+	}
+	
+	return result;
+}
 
 
