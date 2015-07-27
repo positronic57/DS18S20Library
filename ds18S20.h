@@ -119,16 +119,6 @@ typedef struct SDS18S20
 		uint8_t scratchpad[9];	/**< DS18S20 scratchpad */
 }TSDS18S20;
 
-/** \defgroup libMacros DS18S20 library macros */
-/* @{ */
-/**
- * @def DS18S20_SendCommand(DS18S20,command) OWWriteByte(DS18S20,command)
- * Sends a command to the DS18S20 sensor via 1-Wire bus interface.
- *
- */
-#define DS18S20_SendCommand(DS18S20,command) OWWriteByte(DS18S20,command)
-/* @} */
-
 /** \defgroup OneWire Implementation of 1-Wire Interface */
 /* @{ */
 /**Send one bit via 1-Wire interface to DS18S20 sensor.
@@ -197,59 +187,6 @@ uint8_t DS18S20_Init(TSDS18S20 *pDS18S20,volatile uint8_t *DS18S20_PORT,uint8_t 
 uint8_t DS18S20_ReadROM(TSDS18S20 *pDS18S20);
 
 /**
- * @brief This functions initiates a single temperature conversion.
- * 
- * @param[in,out] pDS18S20 pointer to the structure that represent DS18S20
- * @return void
- */	
-void DS18S20_MeasureTemperature(TSDS18S20 *pDS18S20);
-
-/**
- * @brief Read the contents of DS18S20 scratchpad.
- * 
- * @param[in,out] pDS18S20 pointer to the structure that represent DS18S20
- * @return uint8_t 0 if CRC error is detected, 1 for successful scratchpad read.
- */	
-uint8_t DS18S20_ReadScratchPad(TSDS18S20 *pDS18S20);
-
-/**
- * @brief Returns the power supply type based on the respond from the sensor on Read Power Supply 
- * function command.
- * 
- * @param[in] pDS18S20 pointer to the structure that represent DS18S20
- * @return uint8_t 0 for the parasite powered, 1 for externally powered sensor.
- */	
-uint8_t DS18S20_PowerSupplyType(TSDS18S20 *pDS18S20);
-
-/**
- * @brief Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers).
- * 
- * @param[in] pDS18S20 pointer to the structure that represent DS18S20
- * @param[in] TH value of the TH register
- * @param[in] TL value of the TL register 
- * @return void
- */	
-void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL);
-
-/**
- * @brief Copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM.
- *
- * @param [in] pDS18S20 pointer to the structure that represent DS18S20
- * @return void
- *
- */
-void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20);
-
-/**
- * @brief Recalls the alarm trigger values (TH and TL) from EEPROM.
- *
- * @param [in] pDS18S20 pointer to the structure that represent DS18S20
- * @return void
- *
- */
-void DS18S20_RECALL_E2(TSDS18S20 *pDS18S20);
-
-/**
  * @brief sends function commands to DS18S20.
  *
  * @param [in,out] pDS18S20 pointer to the structure that represent DS18S20
@@ -262,7 +199,7 @@ void DS18S20_RECALL_E2(TSDS18S20 *pDS18S20);
  * @return - returns -2 in case of unkown function command;
  * @return - returns -1 in case of failed OWReset().
  */
-int8_t DS18S20_SendFunCommand(TSDS18S20 *pDS18S20, uint8_t funCommand);
+int8_t DS18S20_SendFunctionCmd(TSDS18S20 *pDS18S20, uint8_t funCommand);
 /* @} */
 
 #endif /* DS18S20_H_ */

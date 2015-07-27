@@ -163,124 +163,46 @@ uint8_t DS18S20_ReadROM(TSDS18S20 *pDS18S20)
 		return 0;
 }
 
-/* This functions initiates a single temperature conversion. */
-void DS18S20_MeasureTemperature(TSDS18S20 *pDS18S20)
-{
-	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	OWWriteByte(pDS18S20,CONVERT_T);
-	
-	//while(!OWReadBit(pDS18S20));
-	delay_ms(750);
-	
-	return;
-}
-
-/* Read the content of DS18S20 scratchpad and check the integrity with CRC. */
-uint8_t DS18S20_ReadScratchPad(TSDS18S20 *pDS18S20)
-{
-	uint8_t i;
-	
-	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);	
-	OWWriteByte(pDS18S20,READ_SCRATCHPAD);
-	
-	for(i=0;i<9;i++)
-		pDS18S20->scratchpad[i]=OWReadByte(pDS18S20);
-		
-	if (crc8(pDS18S20->scratchpad,8)==pDS18S20->scratchpad[8])
-		return 1;
-	else
-		return 0;
-}
-
-/* Returns the power supply type based on the respond from the sensor on Read Power Supply function command. */
-uint8_t DS18S20_PowerSupplyType(TSDS18S20 *pDS18S20)
-{
-	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	DS18S20_SendCommand(pDS18S20,READ_POWER_SUPPLY);
-	
-	return OWReadBit(pDS18S20);	
-}
-
-/* Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers).*/
-void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL)
-{
-	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	DS18S20_SendCommand(pDS18S20,WRITE_SCRATCHPAD);
-	
-	OWWriteByte(pDS18S20,TH);
-	OWWriteByte(pDS18S20,TL);
-
-	return;
-}
-
-/* Copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM. */
-void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20)
-{
-	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	DS18S20_SendCommand(pDS18S20,COPY_SCRATCHPAD);
-	
-	while(!OWReadBit(pDS18S20));
-		
-	return;
-}
-
-/* Recalls the alarm trigger values (TH and TL) from EEPROM. */
-void DS18S20_RECALL_E2(TSDS18S20 *pDS18S20)
-{
-	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	DS18S20_SendCommand(pDS18S20,RECALL_E2);
-	
-	while(!OWReadBit(pDS18S20));
-	
-	return;
-}
-
 /* Sends function commands to DS18S20. */
-int8_t DS18S20_SendFunCommand(TSDS18S20 *pDS18S20, uint8_t funCommand)
+int8_t DS18S20_SendFunctionCmd(TSDS18S20 *pDS18S20, uint8_t funCommand)
 {
 	int8_t relust = 1;
 	
 	if (OWReset(pDS18S20))
 		return -1;	//failed OWReset command. Sensor not present or didn't reply to OWReset.
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
+	OWWriteByte(pDS18S20,SKIP_ROM);
 	
 	switch (funCommand)
 	{
 		case RECALL_E2:
 		{
-			DS18S20_SendCommand(pDS18S20,RECALL_E2);
+			OWWriteByte(pDS18S20,RECALL_E2);
 			while(!OWReadBit(pDS18S20));
 			break;
 		}
 		case COPY_SCRATCHPAD:
 		{
-			DS18S20_SendCommand(pDS18S20,COPY_SCRATCHPAD);
+			OWWriteByte(pDS18S20,COPY_SCRATCHPAD);
 			while(!OWReadBit(pDS18S20));
 			break;
 		}
 		case WRITE_SCRATCHPAD:
 		{
-			DS18S20_SendCommand(pDS18S20,WRITE_SCRATCHPAD);
+			OWWriteByte(pDS18S20,WRITE_SCRATCHPAD);
 			OWWriteByte(pDS18S20,TH);
 			OWWriteByte(pDS18S20,TL);
 			break;
 		}
 		case READ_POWER_SUPPLY:
 		{
-			DS18S20_SendCommand(pDS18S20,READ_POWER_SUPPLY);
+			OWWriteByte(pDS18S20,READ_POWER_SUPPLY);
 			result = OWReadBit(pDS18S20);	
 			break;
 		}
 		case READ_SCRATCHPAD:
 		{
 			uint8_t i;
-			DS18S20_SendCommand(pDS18S20,READ_SCRATCHPAD);
+			OWWriteByte(pDS18S20,READ_SCRATCHPAD);
 			for(i=0;i<9;i++)
 				pDS18S20->scratchpad[i]=OWReadByte(pDS18S20);
 			if (crc8(pDS18S20->scratchpad,8)==pDS18S20->scratchpad[8])

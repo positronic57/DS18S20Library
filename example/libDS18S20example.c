@@ -63,17 +63,15 @@ int main(void)
 	else
 		USART_SendString("CRC error!!!");
 	
-	if (DS18S20_PowerSupplyType(pDS18S20))
+	if (DS18S20_SendFunctionCmd(pDS18S20,READ_POWER_SUPPLAY))
 		USART_SendString("The sensor is externally powered.");
 	else
 		USART_SendString("The sensor is parasite powered.");		
 	USART_SendChar(0x0D);
 	
-	DS18S20_CopyScratchpad(pDS18S20);
-	
-	DS18S20_MeasureTemperature(pDS18S20);
+	DS18S20_SendFunctionCmd(pDS18S20,CONVERT_T);
 		
-	if (DS18S20_ReadScratchPad(pDS18S20))
+	if (DS18S20_SendFunctionCmd(pDS18S20,READ_SCRATCHPAD))
 	{
 		// Send the value of the temperature registers over serial port
 		USART_SendString("Current Temperature is:");
