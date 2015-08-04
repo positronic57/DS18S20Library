@@ -107,6 +107,14 @@ void delayloop32(uint32_t loops);
 #define READ_POWER_SUPPLAY 0xB4
 /* @} */
 
+/** \defgroup DS18B20Conf DS18B20 Config Register */
+/* @{ */
+#define CONF_RES_9b 0x1F
+#define CONF_RES_10b 0x3F
+#define CONF_RES_11b 0x5F
+#define CONF_RES_12b 0x7F
+/* @} */
+
 /**
  * @brief Represents the DS18S20 sensor including the 1-Wire bus configuration (MCU PORT and PIN
  * selected for DS18S20 connection).
@@ -117,7 +125,17 @@ typedef struct SDS18S20
 		uint8_t DS18S20_PIN; /**< PIN from the MCU PORT connected to the DS18S20.*/	
 		uint8_t serialNumber[8];	/**< buffer for the DS18S20 serial number (its address on 1-wire bus)*/
 		uint8_t scratchpad[9];	/**< DS18S20 scratchpad */
+		TSensorModel SensorModel;	/**< Sensor Model */ 
 }TSDS18S20;
+
+/**
+ * @brief Defines the sensor model.
+ */
+typedef enum ESensorModel
+{
+	DS18S20Sensor = 0, /**< Define the sensor as DS18S20 */
+	DS18B20Sensor /**< Define the sensor as DS18B20 */
+} TSensorModel;
 
 /** \defgroup libMacros DS18S20 library macros */
 /* @{ */
