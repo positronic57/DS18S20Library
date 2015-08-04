@@ -121,8 +121,8 @@ void delayloop32(uint32_t loops);
  */
 typedef struct SDS18S20 
 {
-		volatile uint8_t *DS18S20_PORT; /**< pointer to the MCU PORT to which DS18S20 sensor is connected.*/
-		uint8_t DS18S20_PIN; /**< PIN from the MCU PORT connected to the DS18S20.*/	
+		volatile uint8_t *DS18x20_PORT; /**< pointer to the MCU PORT to which DS18S20 sensor is connected.*/
+		uint8_t DS18x20_PIN; /**< PIN from the MCU PORT connected to the DS18S20.*/	
 		uint8_t serialNumber[8];	/**< buffer for the DS18S20 serial number (its address on 1-wire bus)*/
 		uint8_t scratchpad[9];	/**< DS18S20 scratchpad */
 		TSensorModel SensorModel;	/**< Sensor Model */ 
@@ -140,11 +140,11 @@ typedef enum ESensorModel
 /** \defgroup libMacros DS18S20 library macros */
 /* @{ */
 /**
- * @def DS18S20_SendCommand(DS18S20,command) OWWriteByte(DS18S20,command)
+ * @def DS18x20_SendCommand(DS18S20,command) OWWriteByte(DS18S20,command)
  * Sends a command to the DS18S20 sensor via 1-Wire bus interface.
  *
  */
-#define DS18S20_SendCommand(DS18S20,command) OWWriteByte(DS18S20,command)
+#define DS18x20_SendCommand(DS18S20,command) OWWriteByte(DS18S20,command)
 /* @} */
 
 /** \defgroup OneWire Implementation of 1-Wire Interface */
@@ -200,11 +200,11 @@ uint8_t OWReset(TSDS18S20 *pDS18S20);
  * The function prepares the 1-Wire bus and runs the sensors initialization procedure.
  * 
  * @param[in,out] pDS18S20 pointer to the structure that represent DS18S20
- * @param[in] DS18S20_PORT is a pointer to the MCU PORT used for the 1-Wire bus
- * @param[in] DS18S20_PIN MCU PIN from DS18S20_PORT connected to the DS18S20 sensor
+ * @param[in] DS18x20_PORT is a pointer to the MCU PORT used for the 1-Wire bus
+ * @param[in] DS18x20_PIN MCU PIN from DS18x20_PORT connected to the DS18S20 sensor
  * @return uint8_t. 1 for success init, 0 for failure.
  */	
-uint8_t DS18S20_Init(TSDS18S20 *pDS18S20,volatile uint8_t *DS18S20_PORT,uint8_t DS18S20_PIN);
+uint8_t DS18x20_Init(TSDS18S20 *pDS18S20,volatile uint8_t *DS18x20_PORT,uint8_t DS18x20_PIN);
 	
 /**
  * @brief Reads DS18S20 64-bit ROM code without using the Search ROM procedure.
@@ -212,7 +212,7 @@ uint8_t DS18S20_Init(TSDS18S20 *pDS18S20,volatile uint8_t *DS18S20_PORT,uint8_t 
  * @param[in,out] pDS18S20 pointer to the structure that represent DS18S20
  * @return uint8_t 1 for valid data transfer, 0 for CRC error detected.
  */	
-uint8_t DS18S20_ReadROM(TSDS18S20 *pDS18S20);
+uint8_t DS18x20_ReadROM(TSDS18S20 *pDS18S20);
 
 /**
  * @brief This functions initiates a single temperature conversion.
@@ -220,7 +220,7 @@ uint8_t DS18S20_ReadROM(TSDS18S20 *pDS18S20);
  * @param[in,out] pDS18S20 pointer to the structure that represent DS18S20
  * @return void
  */	
-void DS18S20_MeasureTemperature(TSDS18S20 *pDS18S20);
+void DS18x20_MeasureTemperature(TSDS18S20 *pDS18S20);
 
 /**
  * @brief Read the contents of DS18S20 scratchpad.
@@ -228,7 +228,7 @@ void DS18S20_MeasureTemperature(TSDS18S20 *pDS18S20);
  * @param[in,out] pDS18S20 pointer to the structure that represent DS18S20
  * @return uint8_t 0 if CRC error is detected, 1 for successful scratchpad read.
  */	
-uint8_t DS18S20_ReadScratchPad(TSDS18S20 *pDS18S20);
+uint8_t DS18x20_ReadScratchPad(TSDS18S20 *pDS18S20);
 
 /**
  * @brief Returns the power supply type based on the respond from the sensor on Read Power Supply 
@@ -237,7 +237,7 @@ uint8_t DS18S20_ReadScratchPad(TSDS18S20 *pDS18S20);
  * @param[in] pDS18S20 pointer to the structure that represent DS18S20
  * @return uint8_t 0 for the parasite powered, 1 for externally powered sensor.
  */	
-uint8_t DS18S20_PowerSupplyType(TSDS18S20 *pDS18S20);
+uint8_t DS18x20_PowerSupplyType(TSDS18S20 *pDS18S20);
 
 /**
  * @brief Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers).
@@ -247,7 +247,7 @@ uint8_t DS18S20_PowerSupplyType(TSDS18S20 *pDS18S20);
  * @param[in] TL value of the TL register 
  * @return void
  */	
-void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL);
+void DS18x20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL);
 
 /**
  * @brief Copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM.
@@ -256,7 +256,7 @@ void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL);
  * @return void
  *
  */
-void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20);
+void DS18x20_CopyScratchpad(TSDS18S20 *pDS18S20);
 
 /**
  * @brief Recalls the alarm trigger values (TH and TL) from EEPROM.
@@ -265,7 +265,7 @@ void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20);
  * @return void
  *
  */
-void DS18S20_RECALL_E2(TSDS18S20 *pDS18S20);
+void DS18x20_RECALL_E2(TSDS18S20 *pDS18S20);
 /* @} */
 
 #endif /* DS18S20_H_ */

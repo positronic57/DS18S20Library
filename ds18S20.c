@@ -51,13 +51,13 @@ uint8_t OWReset(TSDS18S20 *pDS18S20)
 {
 	uint8_t result;
 
-	*(pDS18S20->DS18S20_PORT-1) |= _BV(pDS18S20->DS18S20_PIN);
+	*(pDS18S20->DS18x20_PORT-1) |= _BV(pDS18S20->DS18x20_PIN);
 	delay_us(480);
 	
-	*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
+	*(pDS18S20->DS18x20_PORT-1) &= ~(_BV(pDS18S20->DS18x20_PIN));
 	delay_us(80);
 	
-	result = (*(pDS18S20->DS18S20_PORT-2)) & (_BV(pDS18S20->DS18S20_PIN));
+	result = (*(pDS18S20->DS18x20_PORT-2)) & (_BV(pDS18S20->DS18x20_PIN));
 	
 	delay_us(400);
 
@@ -67,20 +67,20 @@ uint8_t OWReset(TSDS18S20 *pDS18S20)
 /* Send a bit over 1-Wire interface. */
 void OWWriteBit(TSDS18S20 *pDS18S20, uint8_t bit)
 {
-	*(pDS18S20->DS18S20_PORT-1) |= _BV(pDS18S20->DS18S20_PIN);
+	*(pDS18S20->DS18x20_PORT-1) |= _BV(pDS18S20->DS18x20_PIN);
 	
 	if (bit)
 	{
 		//Wite 1
 		delay_us(15);
-		*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
+		*(pDS18S20->DS18x20_PORT-1) &= ~(_BV(pDS18S20->DS18x20_PIN));
 		delay_us(45);
 	}
 	else
 	{
 		//Write 0
 		delay_us(60);
-		*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
+		*(pDS18S20->DS18x20_PORT-1) &= ~(_BV(pDS18S20->DS18x20_PIN));
 	}
 
 	return;
@@ -91,13 +91,13 @@ uint8_t OWReadBit(TSDS18S20 *pDS18S20)
 {
 	uint8_t result=0;
 
-	*(pDS18S20->DS18S20_PORT-1) |= _BV(pDS18S20->DS18S20_PIN);
+	*(pDS18S20->DS18x20_PORT-1) |= _BV(pDS18S20->DS18x20_PIN);
 	delay_us(4);
 	
-	*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
+	*(pDS18S20->DS18x20_PORT-1) &= ~(_BV(pDS18S20->DS18x20_PIN));
 	delay_us(8);
 	
-	if ((*(pDS18S20->DS18S20_PORT-2) & (_BV(pDS18S20->DS18S20_PIN)))) 
+	if ((*(pDS18S20->DS18x20_PORT-2) & (_BV(pDS18S20->DS18x20_PIN)))) 
 		result=1;
 	
 	delay_us(48);
@@ -134,21 +134,21 @@ uint8_t OWReadByte(TSDS18S20 *pDS18S20)
 }
 
 /* Init function for DS18S20. */
-uint8_t DS18S20_Init(TSDS18S20 *pDS18S20,volatile uint8_t *DS18S20_PORT,uint8_t DS18S20_PIN)
+uint8_t DS18x20_Init(TSDS18S20 *pDS18S20,volatile uint8_t *DS18x20_PORT,uint8_t DS18x20_PIN)
 {
 	//Init ports/pins to which DS18S20 is attached.
-	pDS18S20->DS18S20_PORT = DS18S20_PORT;
-	pDS18S20->DS18S20_PIN = DS18S20_PIN;
+	pDS18S20->DS18x20_PORT = DS18x20_PORT;
+	pDS18S20->DS18x20_PIN = DS18x20_PIN;
 	
 	//Set DS18S20 PIN as input one and PORT bit to 0
-	*(pDS18S20->DS18S20_PORT) &= ~(_BV(pDS18S20->DS18S20_PIN));
-	*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
+	*(pDS18S20->DS18x20_PORT) &= ~(_BV(pDS18S20->DS18x20_PIN));
+	*(pDS18S20->DS18x20_PORT-1) &= ~(_BV(pDS18S20->DS18x20_PIN));
 	
 	return OWReset(pDS18S20);
 }
 
 /* Reads DS18S20 64-bit ROM code without using the Search ROM procedure. */
-uint8_t DS18S20_ReadROM(TSDS18S20 *pDS18S20)
+uint8_t DS18x20_ReadROM(TSDS18S20 *pDS18S20)
 {
 	uint8_t i;
 		
@@ -164,10 +164,10 @@ uint8_t DS18S20_ReadROM(TSDS18S20 *pDS18S20)
 }
 
 /* This functions initiates a single temperature conversion. */
-void DS18S20_MeasureTemperature(TSDS18S20 *pDS18S20)
+void DS18x20_MeasureTemperature(TSDS18S20 *pDS18S20)
 {
 	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
+	DS18x20_SendCommand(pDS18S20,SKIP_ROM);
 	OWWriteByte(pDS18S20,CONVERT_T);
 	
 	//while(!OWReadBit(pDS18S20));
@@ -177,12 +177,12 @@ void DS18S20_MeasureTemperature(TSDS18S20 *pDS18S20)
 }
 
 /* Read the content of DS18S20 scratchpad and check the integrity with CRC. */
-uint8_t DS18S20_ReadScratchPad(TSDS18S20 *pDS18S20)
+uint8_t DS18x20_ReadScratchPad(TSDS18S20 *pDS18S20)
 {
 	uint8_t i;
 	
 	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);	
+	DS18x20_SendCommand(pDS18S20,SKIP_ROM);	
 	OWWriteByte(pDS18S20,READ_SCRATCHPAD);
 	
 	for(i=0;i<9;i++)
@@ -195,21 +195,21 @@ uint8_t DS18S20_ReadScratchPad(TSDS18S20 *pDS18S20)
 }
 
 /* Returns the power supply type based on the respond from the sensor on Read Power Supply function command. */
-uint8_t DS18S20_PowerSupplyType(TSDS18S20 *pDS18S20)
+uint8_t DS18x20_PowerSupplyType(TSDS18S20 *pDS18S20)
 {
 	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	DS18S20_SendCommand(pDS18S20,READ_POWER_SUPPLY);
+	DS18x20_SendCommand(pDS18S20,SKIP_ROM);
+	DS18x20_SendCommand(pDS18S20,READ_POWER_SUPPLY);
 	
 	return OWReadBit(pDS18S20);	
 }
 
 /* Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers).*/
-void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL)
+void DS18x20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL)
 {
 	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	DS18S20_SendCommand(pDS18S20,WRITE_SCRATCHPAD);
+	DS18x20_SendCommand(pDS18S20,SKIP_ROM);
+	DS18x20_SendCommand(pDS18S20,WRITE_SCRATCHPAD);
 	
 	OWWriteByte(pDS18S20,TH);
 	OWWriteByte(pDS18S20,TL);
@@ -218,11 +218,11 @@ void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL)
 }
 
 /* Copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM. */
-void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20)
+void DS18x20_CopyScratchpad(TSDS18S20 *pDS18S20)
 {
 	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	DS18S20_SendCommand(pDS18S20,COPY_SCRATCHPAD);
+	DS18x20_SendCommand(pDS18S20,SKIP_ROM);
+	DS18x20_SendCommand(pDS18S20,COPY_SCRATCHPAD);
 	
 	while(!OWReadBit(pDS18S20));
 		
@@ -230,11 +230,11 @@ void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20)
 }
 
 /* Recalls the alarm trigger values (TH and TL) from EEPROM. */
-void DS18S20_RECALL_E2(TSDS18S20 *pDS18S20)
+void DS18x20_RECALL_E2(TSDS18S20 *pDS18S20)
 {
 	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	DS18S20_SendCommand(pDS18S20,RECALL_E2);
+	DS18x20_SendCommand(pDS18S20,SKIP_ROM);
+	DS18x20_SendCommand(pDS18S20,RECALL_E2);
 	
 	while(!OWReadBit(pDS18S20));
 	
