@@ -1,8 +1,7 @@
-DS18S20library is AVR C library for connecting DS18S20 temperature sensor to 8-bit AVR microcontrollers.
+DS18S20library is an AVR C library for connecting DS18S20 and DS18B20 temperature sensors to 8-bit AVR microcontrollers.
 
-The library implements 1-Wire interface for communication with DS18S20.
-The time delay functions that are included in the library and the CRC implementation 
-distributed with the library are written by Martin Thomas.
+The library implements 1-Wire interface for communication with DS18S20/DS18B20.
+The CRC implementation distributed with the library is written by Martin Thomas.
 
 Supported MCU Hardware
 
@@ -10,37 +9,41 @@ The library is compatible with every 8-bit AVR microcontroller.
 
 DS1820 support and implemented functions
 
-The library can be used only in cases when DS18S20 sensor is powered by external power supply.
+The following sensor models are supported by the library:
+- DS18S20;
+- DS18B20.
+
+The library can be used only in cases when DS18x20 sensor is powered by external power supply.
 It doesn't query the sensor for the type of the power supply.
 
 Current version supports 1-Wire bus with only one device attached to it.
 SEARCH_ROM is not implemented in the library so it cannot query the bus for connected devices/sensors.
 
-Implemented DS18S20 ROM Commands:
-- DS18S20 sensor initialization;
+Implemented DS18x20 ROM Commands:
+- DS18S20/DS18B20 sensor initialization;
 - READ ROM command for fetching the ROM address of the sensor;
 - SKIP ROM command so the library can speak to the sensor directly without using sensors 1-Wire bus address.
 
-Implemented DS18S20 Function Commands:
+Implemented DS18x20 Function Commands:
 - Convert T command that initiates a single temperature conversion;
 - READ SCRATCHPAD command that allows the master to read the contents of the sensor memory;
-- READ POWER SUPPLY command to determine power supply type of DS18S20;
-- WRITE SCRATCHPAD command that allows the master to write 2 bytes of data to the scratchpad of DS18S20;
+- READ POWER SUPPLY command to determine power supply type of DS18S20/DS18B20;
+- WRITE SCRATCHPAD command that allows the master to write 2 bytes of data to the scratchpad of DS18S20/DS18B20;
 - COPY SCRATCHPAD command that copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM;
 - RECALL E2 recalls the alarm trigger values (TH and TL) from EEPROM of the sensor.
 
 Usage
 
-The library use DS18S20_Init function to define the 1-Wire bus and initialize the sensor.
+The library use DS18x20_Init function to define the 1-Wire bus and initialize the sensor.
 For bus definition, the init function requires two arguments:
 - the address of MCU PORT used for 1-Wire bus;
-- MCU pin that is connected to the DQ pin of DS18S20.
+- MCU pin that is connected to the DQ pin of DS18S20/DS18B20.
 
 For example:
 
-DS18S20_Init(pDS18S20,&PORTD,PD5);
+DS18x20_Init(pDS18S20,DS18B20Sensor,&PORTD,PD5);
 
-The first argument is a pointer to the structure that represents the sensor. See 
+The first argument is a pointer to the structure that represents the sensor. The second argument defines the sensor model. See 
 the documentation section for further details.
 
 After the initialization step, the rest of the library functions/macros can be used to

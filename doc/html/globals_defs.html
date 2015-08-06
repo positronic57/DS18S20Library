@@ -18,9 +18,9 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">DS18S20 library
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">v2.0</span>
    </div>
-   <div id="projectbrief">DS18S20 library in C for AVR 8-bit microcontrollers</div>
+   <div id="projectbrief">DS18S20/DS18B20 library in C for AVR 8-bit microcontrollers</div>
   </td>
  </tr>
  </tbody>
@@ -47,6 +47,8 @@
       <li><a href="globals.html"><span>All</span></a></li>
       <li><a href="globals_func.html"><span>Functions</span></a></li>
       <li><a href="globals_type.html"><span>Typedefs</span></a></li>
+      <li><a href="globals_enum.html"><span>Enumerations</span></a></li>
+      <li><a href="globals_eval.html"><span>Enumerator</span></a></li>
       <li class="current"><a href="globals_defs.html"><span>Macros</span></a></li>
     </ul>
   </div>
@@ -55,6 +57,18 @@
 &#160;<ul>
 <li>ALARM_SEARCH
 : <a class="el" href="group__DS18S20ROMCmd.html#gaae67cf0ff9c81729cc8a906430009232">ds18S20.h</a>
+</li>
+<li>CONF_RES_10b
+: <a class="el" href="group__DS18B20Conf.html#ga6832a4b423ab9dc32de488e73c6b3d3d">ds18S20.h</a>
+</li>
+<li>CONF_RES_11b
+: <a class="el" href="group__DS18B20Conf.html#gab616695f2d1a3af53a63e6401b08e70d">ds18S20.h</a>
+</li>
+<li>CONF_RES_12b
+: <a class="el" href="group__DS18B20Conf.html#gac9a691832702750d3c4b85361f0ad63c">ds18S20.h</a>
+</li>
+<li>CONF_RES_9b
+: <a class="el" href="group__DS18B20Conf.html#ga4209f6af53ba3bc831106c02d0ef5d2f">ds18S20.h</a>
 </li>
 <li>CONVERT_T
 : <a class="el" href="group__DS18S20FuncCmd.html#ga51f4dc51f0f0598da90cd44bcfc626ec">ds18S20.h</a>
@@ -68,20 +82,8 @@
 <li>CRC8POLY
 : <a class="el" href="CRCgen_8h.html#ac8b5b391b057fa76a185fdc738225094">CRCgen.h</a>
 </li>
-<li>delay_ms
-: <a class="el" href="group__time.html#ga389926e6490f1d3db0f0896e8b0f5f2e">ds18S20.h</a>
-</li>
-<li>DELAY_MS_CONV
-: <a class="el" href="group__time.html#gaee89d01246679c71f220a5c3039768ed">ds18S20.h</a>
-</li>
-<li>delay_us
-: <a class="el" href="group__time.html#gaf4f937c251678e98e4c41b4d58f232a5">ds18S20.h</a>
-</li>
-<li>DELAY_US_CONV
-: <a class="el" href="group__time.html#gace581006f845a7be3957a85325c27e29">ds18S20.h</a>
-</li>
-<li>DS18S20_SendCommand
-: <a class="el" href="group__libMacros.html#gabb088b1dfd4cdeeb79329beb16f06c03">ds18S20.h</a>
+<li>DS18x20_SendCommand
+: <a class="el" href="group__libMacros.html#gab1bd5c8125ebbc89d87e65c45570323e">ds18S20.h</a>
 </li>
 <li>F_CPU
 : <a class="el" href="ds18S20_8h.html#a43bafb28b29491ec7f871319b5a3b2f8">ds18S20.h</a>
@@ -89,8 +91,8 @@
 <li>MATCH_ROM
 : <a class="el" href="group__DS18S20ROMCmd.html#ga20a70a05486a1fa3aba1881aa90104cd">ds18S20.h</a>
 </li>
-<li>READ_POWER_SUPPLAY
-: <a class="el" href="group__DS18S20FuncCmd.html#ga891d9b5e18793e0ea4ee7c0f5b1abd53">ds18S20.h</a>
+<li>READ_POWER_SUPPLY
+: <a class="el" href="group__DS18S20FuncCmd.html#ga28860a567af3d5c5e36d0d069bc2a7c8">ds18S20.h</a>
 </li>
 <li>READ_ROM
 : <a class="el" href="group__DS18S20ROMCmd.html#ga16ad242f444508c47fe745c67669b699">ds18S20.h</a>
@@ -114,7 +116,7 @@
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 23 2015 00:06:36 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 7 2015 01:44:49 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
