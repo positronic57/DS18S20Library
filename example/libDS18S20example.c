@@ -31,15 +31,15 @@ void ConvertTemperature2String(uint8_t LSB, uint8_t MSB);
 
 int main(void)
 {
-	TSDS18S20 DS18S20;
-	TSDS18S20 *pDS18S20 = &DS18S20;
+	TSDS18x20 DS18S20;
+	TSDS18x20 *pDS18S20 = &DS18S20;
 	
 	uint8_t i;
 	
 	//AVR serial port init
 	USART_init(103);
 	
-	if (DS18S20_Init(pDS18S20,&PORTD,PD5))
+	if (DS18x20_Init(pDS18S20,DS18S20Sensor,&PORTD,PD5))
 	{
 		USART_SendString("Error!!! Can not find DS18S20 device!");
 		return -1;
@@ -48,7 +48,7 @@ int main(void)
 		USART_SendString("Connected to DS1820 with serial number:");
 	USART_SendChar(0x0D);
 
-	if (DS18S20_ReadROM(pDS18S20))
+	if (DS18x20_ReadROM(pDS18S20))
 	{
 		// Send the sensor address via serial port
 		for(i=1;i<7;i++)
@@ -63,17 +63,17 @@ int main(void)
 	else
 		USART_SendString("CRC error!!!");
 	
-	if (DS18S20_PowerSupplyType(pDS18S20))
+	if (DS18x20_PowerSupplyType(pDS18S20))
 		USART_SendString("The sensor is externally powered.");
 	else
 		USART_SendString("The sensor is parasite powered.");		
 	USART_SendChar(0x0D);
 	
-	DS18S20_CopyScratchpad(pDS18S20);
+	DS18x20_CopyScratchpad(pDS18S20);
 	
-	DS18S20_MeasureTemperature(pDS18S20);
+	DS18x20_MeasureTemperature(pDS18S20);
 		
-	if (DS18S20_ReadScratchPad(pDS18S20))
+	if (DS18x20_ReadScratchPad(pDS18S20))
 	{
 		// Send the value of the temperature registers over serial port
 		USART_SendString("Current Temperature is:");
