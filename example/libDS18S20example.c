@@ -15,11 +15,12 @@
  * - DQ DS18S20 connected to PIN5 of PORTD
  * 
  * DS18S20 is powered by an external supply.
- * There is a pull-up resistor on the 1-Wire bus.
+ * There is a pull-up resistor on the 1-Wire bus (DQ Pin).
  */ 
 
 
 #include <avr/io.h>
+#include <string.h>
 
 #define F_CPU 16000000UL
 
@@ -27,18 +28,20 @@
 #include "UART.h"
 
 //Calculates the temperature and sends it via serial port
-void ConvertTemperature2String(uint8_t LSB, uint8_t MSB);
+void ConvertTemperature2String(uint8_t LSB, uint8_t MSB, char *buffer);
 
 int main(void)
 {
 	TSDS18S20 DS18S20;
 	TSDS18S20 *pDS18S20 = &DS18S20;
-	
+	char buffer[6];
+		
 	uint8_t i;
 	
 	//AVR serial port init
 	USART_init(103);
 	
+	// Sensor init
 	if (DS18S20_Init(pDS18S20,&PORTD,PD5))
 	{
 		USART_SendString("Error!!! Can not find DS18S20 device!");
@@ -48,36 +51,39 @@ int main(void)
 		USART_SendString("Connected to DS1820 with serial number:");
 	USART_SendChar(0x0D);
 
+	// Read the ROM code of the sensor and send it via serial port
 	if (DS18S20_ReadROM(pDS18S20))
 	{
-		// Send the sensor address via serial port
-		for(i=1;i<7;i++)
+		for(i=12;i>1;i--)
 		{
-			USART_sendHex(pDS18S20->serialNumber[i]);
-			if (i==6)
-				USART_SendChar(0x0D);
-			else
+			if (i%2)
 				USART_SendChar(':');
+			else
+				USART_sendHex(pDS18S20->serialNumber[i/2]);
 		}
+		USART_SendChar(0x0D);
 	}
 	else
 		USART_SendString("CRC error!!!");
 	
+	// Check sensors power supply type
 	if (DS18S20_PowerSupplyType(pDS18S20))
 		USART_SendString("The sensor is externally powered.");
 	else
 		USART_SendString("The sensor is parasite powered.");		
 	USART_SendChar(0x0D);
 	
-	DS18S20_CopyScratchpad(pDS18S20);
-	
+	// Initiate a temperature conversion
 	DS18S20_MeasureTemperature(pDS18S20);
 		
+	// Read sensor memory to fetch temperature reading
 	if (DS18S20_ReadScratchPad(pDS18S20))
 	{
 		// Send the value of the temperature registers over serial port
 		USART_SendString("Current Temperature is:");
-		ConvertTemperature2String(pDS18S20->scratchpad[0],pDS18S20->scratchpad[1]);
+		ConvertTemperature2String(pDS18S20->scratchpad[0],pDS18S20->scratchpad[1],buffer);
+		USART_SendString(buffer);
+		USART_SendChar('C');
 		USART_SendChar(0x0D);
 	}
 	else
@@ -89,40 +95,26 @@ int main(void)
 
 }
 
-void ConvertTemperature2String(uint8_t LSB, uint8_t MSB)
+// Convert sensor reading to a string
+void ConvertTemperature2String(uint8_t LSB, uint8_t MSB, char *buffer)
 {
-	uint8_t	temp = LSB;
-	uint8_t delitel = 100;
+	int16_t Temperature=0;
+	char hp[3];
 	
-	if (MSB)
-	{
-		/* LSB represents number of 0.5C in actual temperature value. 
-		 * LSB uses two complement format for representing signed integer values.
-		 */
-		temp = ~temp + 1;
-		USART_SendChar('-');
-	}
-	else
-		USART_SendChar('+');
-
-	temp >>= 1;
-	//Eliminate leading zeros
-	while(!(temp/delitel))
-		delitel/=10;
-	do
-	{
-		USART_SendChar('0'+temp/delitel);
-		temp %= delitel;
-		delitel /= 10;
-	}while(temp);
+	Temperature = MSB;
+	Temperature <<= 8;
+	Temperature |= LSB;
 	
-	USART_SendChar('.');
+	if (Temperature<0)
+		*buffer='-';
+		
+	itoa(abs(Temperature)/2,hp,10);
+	strcat(buffer,hp);
+	
 	if (LSB & 0x01)
-		USART_SendChar('5');
+		strcat(buffer,".5");
 	else
-		USART_SendChar('0');
+		strcat(buffer,".0");
 	
-	USART_SendChar('C');
-	USART_SendChar(0x0D);
-	
+	return;
 }

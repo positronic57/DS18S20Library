@@ -12,6 +12,7 @@
 #include <avr/io.h>
 #include "ds18S20.h"
 #include "CRCgen.h"
+#include <util/delay.h>
 
 /** @file ds18S20.c
  *  @brief Implements the functions defined in the header file.
@@ -20,46 +21,19 @@
  *  @author Goce Boshkovski
  */
 
-/**
- * @author Martin Thomas
- * @brief Precise Delay Functions
- * V 0.5, Martin Thomas, 9/2004
- */
-void delayloop32(uint32_t loops)
-{
-	__asm__ volatile ( "cp  %A0,__zero_reg__ \n\t"  \
-	"cpc %B0,__zero_reg__ \n\t"  \
-	"cpc %C0,__zero_reg__ \n\t"  \
-	"cpc %D0,__zero_reg__ \n\t"  \
-	"breq L_Exit_%=       \n\t"  \
-	"L_LOOP_%=:           \n\t"  \
-	"subi %A0,1           \n\t"  \
-	"sbci %B0,0           \n\t"  \
-	"sbci %C0,0           \n\t"  \
-	"sbci %D0,0           \n\t"  \
-	"brne L_LOOP_%=            \n\t"  \
-	"L_Exit_%=:           \n\t"  \
-	: "=w" (loops)              \
-	: "0"  (loops)              \
-	);                             \
-	
-	return;
-}
-
-
 uint8_t OWReset(TSDS18S20 *pDS18S20)
 {
 	uint8_t result;
 
 	*(pDS18S20->DS18S20_PORT-1) |= _BV(pDS18S20->DS18S20_PIN);
-	delay_us(480);
+	_delay_us(480);
 	
 	*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
-	delay_us(80);
+	_delay_us(80);
 	
 	result = (*(pDS18S20->DS18S20_PORT-2)) & (_BV(pDS18S20->DS18S20_PIN));
 	
-	delay_us(400);
+	_delay_us(400);
 
 	return result;
 }
@@ -72,14 +46,14 @@ void OWWriteBit(TSDS18S20 *pDS18S20, uint8_t bit)
 	if (bit)
 	{
 		//Wite 1
-		delay_us(15);
+		_delay_us(15);
 		*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
-		delay_us(45);
+		_delay_us(45);
 	}
 	else
 	{
 		//Write 0
-		delay_us(60);
+		_delay_us(60);
 		*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
 	}
 
@@ -92,15 +66,15 @@ uint8_t OWReadBit(TSDS18S20 *pDS18S20)
 	uint8_t result=0;
 
 	*(pDS18S20->DS18S20_PORT-1) |= _BV(pDS18S20->DS18S20_PIN);
-	delay_us(4);
+	_delay_us(4);
 	
 	*(pDS18S20->DS18S20_PORT-1) &= ~(_BV(pDS18S20->DS18S20_PIN));
-	delay_us(8);
+	_delay_us(8);
 	
 	if ((*(pDS18S20->DS18S20_PORT-2) & (_BV(pDS18S20->DS18S20_PIN)))) 
 		result=1;
 	
-	delay_us(48);
+	_delay_us(48);
 	
 	return result;
 }
@@ -167,11 +141,11 @@ uint8_t DS18S20_ReadROM(TSDS18S20 *pDS18S20)
 void DS18S20_MeasureTemperature(TSDS18S20 *pDS18S20)
 {
 	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
+	OWWriteByte(pDS18S20,SKIP_ROM);
 	OWWriteByte(pDS18S20,CONVERT_T);
 	
 	//while(!OWReadBit(pDS18S20));
-	delay_ms(750);
+	_delay_ms(750);
 	
 	return;
 }
@@ -182,7 +156,7 @@ uint8_t DS18S20_ReadScratchPad(TSDS18S20 *pDS18S20)
 	uint8_t i;
 	
 	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);	
+	OWWriteByte(pDS18S20,SKIP_ROM);	
 	OWWriteByte(pDS18S20,READ_SCRATCHPAD);
 	
 	for(i=0;i<9;i++)
@@ -198,8 +172,8 @@ uint8_t DS18S20_ReadScratchPad(TSDS18S20 *pDS18S20)
 uint8_t DS18S20_PowerSupplyType(TSDS18S20 *pDS18S20)
 {
 	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	DS18S20_SendCommand(pDS18S20,READ_POWER_SUPPLY);
+	OWWriteByte(pDS18S20,SKIP_ROM);
+	OWWriteByte(pDS18S20,READ_POWER_SUPPLY);
 	
 	return OWReadBit(pDS18S20);	
 }
@@ -208,8 +182,8 @@ uint8_t DS18S20_PowerSupplyType(TSDS18S20 *pDS18S20)
 void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL)
 {
 	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	DS18S20_SendCommand(pDS18S20,WRITE_SCRATCHPAD);
+	OWWriteByte(pDS18S20,SKIP_ROM);
+	OWWriteByte(pDS18S20,WRITE_SCRATCHPAD);
 	
 	OWWriteByte(pDS18S20,TH);
 	OWWriteByte(pDS18S20,TL);
@@ -221,8 +195,8 @@ void DS18S20_WriteScratchpad(TSDS18S20 *pDS18S20, uint8_t TH, uint8_t TL)
 void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20)
 {
 	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	DS18S20_SendCommand(pDS18S20,COPY_SCRATCHPAD);
+	OWWriteByte(pDS18S20,SKIP_ROM);
+	OWWriteByte(pDS18S20,COPY_SCRATCHPAD);
 	
 	while(!OWReadBit(pDS18S20));
 		
@@ -233,13 +207,10 @@ void DS18S20_CopyScratchpad(TSDS18S20 *pDS18S20)
 void DS18S20_RECALL_E2(TSDS18S20 *pDS18S20)
 {
 	OWReset(pDS18S20);
-	DS18S20_SendCommand(pDS18S20,SKIP_ROM);
-	DS18S20_SendCommand(pDS18S20,RECALL_E2);
+	OWWriteByte(pDS18S20,SKIP_ROM);
+	OWWriteByte(pDS18S20,RECALL_E2);
 	
 	while(!OWReadBit(pDS18S20));
 	
 	return;
 }
-
-
-

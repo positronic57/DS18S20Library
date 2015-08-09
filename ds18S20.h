@@ -33,61 +33,6 @@
 #define F_CPU 16000000UL
 #endif
 
-/** \defgroup time Time delay functions and macros (Precise Delay Functions V 0.5, Martin Thomas, 9/2004)*/
-/* @{ */
-/**
- * @author Martin Thomas
- * @brief Precise Delay Functions
- * V 0.5, Martin Thomas, 9/2004
- */
-static inline void delayloop16(uint16_t count)
-{
-	asm volatile (  "cp  %A0,__zero_reg__ \n\t"  \
-	"cpc %B0,__zero_reg__ \n\t"  \
-	"breq L_Exit_%=       \n\t"  \
-	"L_LOOP_%=:           \n\t"  \
-	"sbiw %0,1            \n\t"  \
-	"brne L_LOOP_%=       \n\t"  \
-	"L_Exit_%=:           \n\t"  \
-	: "=w" (count)
-	: "0"  (count)
-	);
-}
-/**
- * @author Martin Thomas
- * @brief Precise Delay Functions
- * V 0.5, Martin Thomas, 9/2004
- */
-#define DELAY_US_CONV(us) ((uint16_t)(((((us)*1000L)/(1000000000/F_CPU))-1)/4))
-/**
- * @author Martin Thomas
- * @brief Precise Delay Functions
- * V 0.5, Martin Thomas, 9/2004
- */
-#define delay_us(us)	  delayloop16(DELAY_US_CONV(us))
-/**
- * @author Martin Thomas
- * @brief Precise Delay Functions
- * V 0.5, Martin Thomas, 9/2004
- */
-void delayloop32( uint32_t l);
-/**
- * @author Martin Thomas
- * @brief Precise Delay Functions
- * V 0.5, Martin Thomas, 9/2004
- */
-#define DELAY_MS_CONV(ms) ( (uint32_t) (ms*(F_CPU/6000L)) ) 
-/**
- * @author Martin Thomas
- * @brief Precise Delay Functions
- * V 0.5, Martin Thomas, 9/2004
- */
-#define delay_ms(ms)  delayloop32(DELAY_MS_CONV(ms))
-
-void delayloop32(uint32_t loops);
-/* @} */
-
-
 /** \defgroup DS18S20ROMCmd DS18S20 ROM Commands */
 /* @{ */
 #define SEARCH_ROM 0xF0
@@ -104,7 +49,7 @@ void delayloop32(uint32_t loops);
 #define READ_SCRATCHPAD 0xBE
 #define COPY_SCRATCHPAD 0x48
 #define RECALL_E2 0xB8
-#define READ_POWER_SUPPLAY 0xB4
+#define READ_POWER_SUPPLY 0xB4
 /* @} */
 
 /**
@@ -118,16 +63,6 @@ typedef struct SDS18S20
 		uint8_t serialNumber[8];	/**< buffer for the DS18S20 serial number (its address on 1-wire bus)*/
 		uint8_t scratchpad[9];	/**< DS18S20 scratchpad */
 }TSDS18S20;
-
-/** \defgroup libMacros DS18S20 library macros */
-/* @{ */
-/**
- * @def DS18S20_SendCommand(DS18S20,command) OWWriteByte(DS18S20,command)
- * Sends a command to the DS18S20 sensor via 1-Wire bus interface.
- *
- */
-#define DS18S20_SendCommand(DS18S20,command) OWWriteByte(DS18S20,command)
-/* @} */
 
 /** \defgroup OneWire Implementation of 1-Wire Interface */
 /* @{ */

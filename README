@@ -1,8 +1,7 @@
 DS18S20library is AVR C library for connecting DS18S20 temperature sensor to 8-bit AVR microcontrollers.
 
 The library implements 1-Wire interface for communication with DS18S20.
-The time delay functions that are included in the library and the CRC implementation 
-distributed with the library are written by Martin Thomas.
+The CRC implementation distributed with the library is written by Martin Thomas.
 
 Supported MCU Hardware
 
@@ -11,7 +10,6 @@ The library is compatible with every 8-bit AVR microcontroller.
 DS1820 support and implemented functions
 
 The library can be used only in cases when DS18S20 sensor is powered by external power supply.
-It doesn't query the sensor for the type of the power supply.
 
 Current version supports 1-Wire bus with only one device attached to it.
 SEARCH_ROM is not implemented in the library so it cannot query the bus for connected devices/sensors.
