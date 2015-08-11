@@ -1,0 +1,31 @@
+The library is distributed with the following examples:
+- DS18B20example1.c;
+- DS18B20example2.c;
+- DS18S20example1.c.
+
+They are tested on Atmega32 microcontroller.
+
+All of them use serial port for representing sensor readings to the user.
+The code for serial communication is implemented in UART.c and UART.h files.
+
+DS18B20example1.c
+
+This program demonstrates the usage of DS18S20 library with Atmega32 for temperature measurement. 
+The temperature reading from the sensor is first converted to a decimal value using DS18x20_TemperatureValue() function from the library and then to a string by dtostrf(). 
+This function is located in the mathematical library, libm.a. 
+Link this example with the math library with the -lm option while compiling.
+
+DS18B20example2.c
+
+This example demonstrates how DS18S20 library can be use for reading DS18B20 ROM code and check the power supply type of the sensor. 
+
+DS18S20example1.c
+
+This program demonstrates the usage of DS18S20 library with Atmega32 for temperature measurement. 
+The temperature reading from DS18S20 sensor is converted to a string with additional function 
+that is not part of the library and send via serial port.
+
+WARNING: 
+The source is provided as it is without any warranty. Use it on your own risk!
+The author does not take any responsibility for the damage caused while using this software.
+

@@ -33,7 +33,7 @@
 #define F_CPU 16000000UL
 #endif
 
-/** \defgroup DS18S20ROMCmd DS18S20 ROM Commands */
+/** \defgroup DS18S20ROMCmd DS18x20 ROM Commands */
 /* @{ */
 #define SEARCH_ROM 0xF0
 #define READ_ROM 0x33
@@ -42,7 +42,7 @@
 #define ALARM_SEARCH 0xEC
 /* @} */
 
-/** \defgroup DS18S20FuncCmd DS18S20 Commands */
+/** \defgroup DS18S20FuncCmd DS18x20 Function Commands */
 /* @{ */
 #define CONVERT_T 0x44
 #define WRITE_SCRATCHPAD 0x4E
@@ -81,16 +81,6 @@ typedef struct SDS18x20
 		uint8_t scratchpad[9];	/**< DS18S20 scratchpad */
 		TSensorModel SensorModel;	/**< Sensor Model */ 
 }TSDS18x20;
-
-/** \defgroup libMacros DS18S20 library macros */
-/* @{ */
-/**
- * @def DS18x20_SendCommand(DS18S20,command) OWWriteByte(DS18S20,command)
- * Sends a command to the DS18S20 sensor via 1-Wire bus interface.
- *
- */
-#define DS18x20_SendCommand(DS18S20,command) OWWriteByte(DS18S20,command)
-/* @} */
 
 /** \defgroup OneWire Implementation of 1-Wire Interface */
 /* @{ */
@@ -137,7 +127,7 @@ uint8_t OWReadByte(TSDS18x20 *pDS18x20);
 uint8_t OWReset(TSDS18x20 *pDS18x20);
 /* @} */
 
-/** \defgroup DS18S20func DS18S20 functions */
+/** \defgroup DS18S20func DS18x20 functions */
 /* @{ */
 	
 /**
@@ -237,6 +227,16 @@ void DS18x20_CopyScratchpad(TSDS18x20 *pDS18x20);
  *
  */
 void DS18x20_RECALL_E2(TSDS18x20 *pDS18x20);
+/* @} */
+
+/**
+ * @brief Convert temperature reading to a floating point number.
+ *
+ * @param [in] pDS18x20 pointer to the structure that represent DS18S20
+ * @return double
+ *
+ */
+double DS18x20_TemperatureValue(TSDS18x20 *pDS18x20);
 /* @} */
 
 #endif /* DS18S20_H_ */

@@ -3,6 +3,13 @@ DS18S20library is an AVR C library for connecting DS18S20 and DS18B20 temperatur
 The library implements 1-Wire interface for communication with DS18S20/DS18B20.
 The CRC implementation distributed with the library is written by Martin Thomas.
 
+What's New
+
+- Added support for DS18B20 sensor;
+- Possibility to define the resolution of the temperature measurement from 9 to 12 bits in case of DS18B20 sensor;
+- Added a new function that converts the sensor temperature reading to a decimal number;
+- New examples that demonstrate DS18B20 support.
+
 Supported MCU Hardware
 
 The library is compatible with every 8-bit AVR microcontroller.
