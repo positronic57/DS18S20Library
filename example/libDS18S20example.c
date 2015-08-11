@@ -8,8 +8,10 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License.
  *
- * This program demonstrates the usage of DS18S20 library with Atmega32.
- * The CPU freq is 16MHz defined with F_CPU.
+ * This program demonstrates the usage of DS18S20 library with Atmega32
+ * for temperature measurement. The temperature reading from the sensor is
+ * converted to a string with additional function that is not part of the
+ * library and send via serial port.
  * 
  * DS18S20 and Atmega32 connection: 
  * - DQ DS18S20 connected to PIN5 of PORTD
@@ -34,7 +36,7 @@ int main(void)
 {
 	TSDS18S20 DS18S20;
 	TSDS18S20 *pDS18S20 = &DS18S20;
-	char buffer[6];
+	char buffer[9];
 		
 	uint8_t i;
 	
@@ -44,13 +46,14 @@ int main(void)
 	// Sensor init
 	if (DS18S20_Init(pDS18S20,&PORTD,PD5))
 	{
-		USART_SendString("Error!!! Can not find DS18S20 device!");
+		USART_SendString("Error!!! Can not find 1-Wire device attached on the bus!");
 		return -1;
 	}
 	else
-		USART_SendString("Connected to DS1820 with serial number:");
+		USART_SendString("1-Wire device detected on the bus.");
 	USART_SendChar(0x0D);
 
+	USART_SendString("The ROM code of the device is: ");
 	// Read the ROM code of the sensor and send it via serial port
 	if (DS18S20_ReadROM(pDS18S20))
 	{
@@ -80,7 +83,7 @@ int main(void)
 	if (DS18S20_ReadScratchPad(pDS18S20))
 	{
 		// Send the value of the temperature registers over serial port
-		USART_SendString("Current Temperature is:");
+		USART_SendString("Current Temperature is: ");
 		ConvertTemperature2String(pDS18S20->scratchpad[0],pDS18S20->scratchpad[1],buffer);
 		USART_SendString(buffer);
 		USART_SendChar('C');
