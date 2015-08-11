@@ -20,7 +20,7 @@
    <div id="projectname">DS18S20 library
    &#160;<span id="projectnumber">v0.4</span>
    </div>
-   <div id="projectbrief">DS18S20 library in C for AVR 8-bit microcontrollers</div>
+   <div id="projectbrief">DS18S20/DS18B20 library in C for AVR 8-bit microcontrollers</div>
   </td>
  </tr>
  </tbody>
@@ -56,6 +56,7 @@
 <div class="textblock"><code>#include &quot;<a class="el" href="ds18S20_8h_source.html">ds18S20.h</a>&quot;</code><br />
 <code>#include &lt;avr/io.h&gt;</code><br />
 <code>#include &lt;util/delay.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="CRCgen_8h_source.html">CRCgen.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -100,15 +101,44 @@ Functions</h2></td></tr>
 <tr class="memitem:gab112a387150b7545c9c4d55fabc06f58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#gab112a387150b7545c9c4d55fabc06f58">DS18x20_RECALL_E2</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
 <tr class="memdesc:gab112a387150b7545c9c4d55fabc06f58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recalls the alarm trigger values (TH and TL) from EEPROM.  <a href="group__DS18S20func.html#gab112a387150b7545c9c4d55fabc06f58">More...</a><br /></td></tr>
 <tr class="separator:gab112a387150b7545c9c4d55fabc06f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c99c5525d160d8713fcbf1660abf28a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds18S20_8c.html#a0c99c5525d160d8713fcbf1660abf28a">DS18x20_TemperatureValue</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
+<tr class="memdesc:a0c99c5525d160d8713fcbf1660abf28a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert temperature reading to a floating point number.  <a href="#a0c99c5525d160d8713fcbf1660abf28a">More...</a><br /></td></tr>
+<tr class="separator:a0c99c5525d160d8713fcbf1660abf28a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements the functions defined in the header file. </p>
 <dl class="section date"><dt>Date</dt><dd>13-Jun-15 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Goce Boshkovski </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a0c99c5525d160d8713fcbf1660abf28a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double DS18x20_TemperatureValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *&#160;</td>
+          <td class="paramname"><em>pDS18x20</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert temperature reading to a floating point number. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pDS18x20</td><td>pointer to the structure that represent DS18S20 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 12 2015 00:23:41 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 12 2015 01:30:10 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

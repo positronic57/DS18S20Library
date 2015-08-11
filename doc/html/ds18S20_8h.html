@@ -20,7 +20,7 @@
    <div id="projectname">DS18S20 library
    &#160;<span id="projectnumber">v0.4</span>
    </div>
-   <div id="projectbrief">DS18S20 library in C for AVR 8-bit microcontrollers</div>
+   <div id="projectbrief">DS18S20/DS18B20 library in C for AVR 8-bit microcontrollers</div>
   </td>
  </tr>
  </tbody>
@@ -71,18 +71,6 @@ Data Structures</h2></td></tr>
 Macros</h2></td></tr>
 <tr class="memitem:a43bafb28b29491ec7f871319b5a3b2f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds18S20_8h.html#a43bafb28b29491ec7f871319b5a3b2f8">F_CPU</a>&#160;&#160;&#160;16000000UL</td></tr>
 <tr class="separator:a43bafb28b29491ec7f871319b5a3b2f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gace581006f845a7be3957a85325c27e29"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__time.html#gace581006f845a7be3957a85325c27e29">DELAY_US_CONV</a>(us)&#160;&#160;&#160;((uint16_t)(((((us)*1000L)/(1000000000/F_CPU))-1)/4))</td></tr>
-<tr class="memdesc:gace581006f845a7be3957a85325c27e29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precise Delay Functions V 0.5, Martin Thomas, 9/2004.  <a href="group__time.html#gace581006f845a7be3957a85325c27e29">More...</a><br/></td></tr>
-<tr class="separator:gace581006f845a7be3957a85325c27e29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf4f937c251678e98e4c41b4d58f232a5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__time.html#gaf4f937c251678e98e4c41b4d58f232a5">delay_us</a>(us)&#160;&#160;&#160;<a class="el" href="group__time.html#ga1550f94a0f34f9f0884cce748798ad8a">delayloop16</a>(<a class="el" href="group__time.html#gace581006f845a7be3957a85325c27e29">DELAY_US_CONV</a>(us))</td></tr>
-<tr class="memdesc:gaf4f937c251678e98e4c41b4d58f232a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precise Delay Functions V 0.5, Martin Thomas, 9/2004.  <a href="group__time.html#gaf4f937c251678e98e4c41b4d58f232a5">More...</a><br/></td></tr>
-<tr class="separator:gaf4f937c251678e98e4c41b4d58f232a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaee89d01246679c71f220a5c3039768ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__time.html#gaee89d01246679c71f220a5c3039768ed">DELAY_MS_CONV</a>(ms)&#160;&#160;&#160;( (uint32_t) (ms*(<a class="el" href="ds18S20_8h.html#a43bafb28b29491ec7f871319b5a3b2f8">F_CPU</a>/6000L)) )</td></tr>
-<tr class="memdesc:gaee89d01246679c71f220a5c3039768ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precise Delay Functions V 0.5, Martin Thomas, 9/2004.  <a href="group__time.html#gaee89d01246679c71f220a5c3039768ed">More...</a><br/></td></tr>
-<tr class="separator:gaee89d01246679c71f220a5c3039768ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga389926e6490f1d3db0f0896e8b0f5f2e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__time.html#ga389926e6490f1d3db0f0896e8b0f5f2e">delay_ms</a>(ms)&#160;&#160;&#160;<a class="el" href="group__time.html#ga9cc720be418a9ce74eed0e8402a15efd">delayloop32</a>(<a class="el" href="group__time.html#gaee89d01246679c71f220a5c3039768ed">DELAY_MS_CONV</a>(ms))</td></tr>
-<tr class="memdesc:ga389926e6490f1d3db0f0896e8b0f5f2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precise Delay Functions V 0.5, Martin Thomas, 9/2004.  <a href="group__time.html#ga389926e6490f1d3db0f0896e8b0f5f2e">More...</a><br/></td></tr>
-<tr class="separator:ga389926e6490f1d3db0f0896e8b0f5f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae22115770cfd724213b05d36afcb7d8e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20ROMCmd.html#gae22115770cfd724213b05d36afcb7d8e">SEARCH_ROM</a>&#160;&#160;&#160;0xF0</td></tr>
 <tr class="separator:gae22115770cfd724213b05d36afcb7d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga16ad242f444508c47fe745c67669b699"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20ROMCmd.html#ga16ad242f444508c47fe745c67669b699">READ_ROM</a>&#160;&#160;&#160;0x33</td></tr>
@@ -276,7 +264,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 12 2015 00:23:41 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 12 2015 01:30:10 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>
