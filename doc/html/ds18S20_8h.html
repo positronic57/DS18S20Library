@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">DS18S20 library
-   &#160;<span id="projectnumber">v0.3</span>
+   &#160;<span id="projectnumber">v0.4</span>
    </div>
    <div id="projectbrief">DS18S20 library in C for AVR 8-bit microcontrollers</div>
   </td>
@@ -48,6 +48,7 @@
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">ds18S20.h File Reference</div>  </div>
@@ -62,14 +63,26 @@
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSDS18S20.html">SDS18S20</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the DS18S20 sensor including the 1-Wire bus configuration (MCU PORT and PIN selected for DS18S20 connection).  <a href="structSDS18S20.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSDS18x20.html">SDS18x20</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the DS18S20 sensor including the 1-Wire bus configuration (MCU PORT and PIN selected for DS18S20 connection).  <a href="structSDS18x20.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a43bafb28b29491ec7f871319b5a3b2f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds18S20_8h.html#a43bafb28b29491ec7f871319b5a3b2f8">F_CPU</a>&#160;&#160;&#160;16000000UL</td></tr>
 <tr class="separator:a43bafb28b29491ec7f871319b5a3b2f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gace581006f845a7be3957a85325c27e29"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__time.html#gace581006f845a7be3957a85325c27e29">DELAY_US_CONV</a>(us)&#160;&#160;&#160;((uint16_t)(((((us)*1000L)/(1000000000/F_CPU))-1)/4))</td></tr>
+<tr class="memdesc:gace581006f845a7be3957a85325c27e29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precise Delay Functions V 0.5, Martin Thomas, 9/2004.  <a href="group__time.html#gace581006f845a7be3957a85325c27e29">More...</a><br/></td></tr>
+<tr class="separator:gace581006f845a7be3957a85325c27e29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf4f937c251678e98e4c41b4d58f232a5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__time.html#gaf4f937c251678e98e4c41b4d58f232a5">delay_us</a>(us)&#160;&#160;&#160;<a class="el" href="group__time.html#ga1550f94a0f34f9f0884cce748798ad8a">delayloop16</a>(<a class="el" href="group__time.html#gace581006f845a7be3957a85325c27e29">DELAY_US_CONV</a>(us))</td></tr>
+<tr class="memdesc:gaf4f937c251678e98e4c41b4d58f232a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precise Delay Functions V 0.5, Martin Thomas, 9/2004.  <a href="group__time.html#gaf4f937c251678e98e4c41b4d58f232a5">More...</a><br/></td></tr>
+<tr class="separator:gaf4f937c251678e98e4c41b4d58f232a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaee89d01246679c71f220a5c3039768ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__time.html#gaee89d01246679c71f220a5c3039768ed">DELAY_MS_CONV</a>(ms)&#160;&#160;&#160;( (uint32_t) (ms*(<a class="el" href="ds18S20_8h.html#a43bafb28b29491ec7f871319b5a3b2f8">F_CPU</a>/6000L)) )</td></tr>
+<tr class="memdesc:gaee89d01246679c71f220a5c3039768ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precise Delay Functions V 0.5, Martin Thomas, 9/2004.  <a href="group__time.html#gaee89d01246679c71f220a5c3039768ed">More...</a><br/></td></tr>
+<tr class="separator:gaee89d01246679c71f220a5c3039768ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga389926e6490f1d3db0f0896e8b0f5f2e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__time.html#ga389926e6490f1d3db0f0896e8b0f5f2e">delay_ms</a>(ms)&#160;&#160;&#160;<a class="el" href="group__time.html#ga9cc720be418a9ce74eed0e8402a15efd">delayloop32</a>(<a class="el" href="group__time.html#gaee89d01246679c71f220a5c3039768ed">DELAY_MS_CONV</a>(ms))</td></tr>
+<tr class="memdesc:ga389926e6490f1d3db0f0896e8b0f5f2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precise Delay Functions V 0.5, Martin Thomas, 9/2004.  <a href="group__time.html#ga389926e6490f1d3db0f0896e8b0f5f2e">More...</a><br/></td></tr>
+<tr class="separator:ga389926e6490f1d3db0f0896e8b0f5f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae22115770cfd724213b05d36afcb7d8e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20ROMCmd.html#gae22115770cfd724213b05d36afcb7d8e">SEARCH_ROM</a>&#160;&#160;&#160;0xF0</td></tr>
 <tr class="separator:gae22115770cfd724213b05d36afcb7d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga16ad242f444508c47fe745c67669b699"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20ROMCmd.html#ga16ad242f444508c47fe745c67669b699">READ_ROM</a>&#160;&#160;&#160;0x33</td></tr>
@@ -92,49 +105,77 @@ Macros</h2></td></tr>
 <tr class="separator:gab97109d97df3e7cac241383e5d7151dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga28860a567af3d5c5e36d0d069bc2a7c8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20FuncCmd.html#ga28860a567af3d5c5e36d0d069bc2a7c8">READ_POWER_SUPPLY</a>&#160;&#160;&#160;0xB4</td></tr>
 <tr class="separator:ga28860a567af3d5c5e36d0d069bc2a7c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4209f6af53ba3bc831106c02d0ef5d2f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18B20Conf.html#ga4209f6af53ba3bc831106c02d0ef5d2f">CONF_RES_9b</a>&#160;&#160;&#160;0x1F</td></tr>
+<tr class="separator:ga4209f6af53ba3bc831106c02d0ef5d2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6832a4b423ab9dc32de488e73c6b3d3d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18B20Conf.html#ga6832a4b423ab9dc32de488e73c6b3d3d">CONF_RES_10b</a>&#160;&#160;&#160;0x3F</td></tr>
+<tr class="separator:ga6832a4b423ab9dc32de488e73c6b3d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab616695f2d1a3af53a63e6401b08e70d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18B20Conf.html#gab616695f2d1a3af53a63e6401b08e70d">CONF_RES_11b</a>&#160;&#160;&#160;0x5F</td></tr>
+<tr class="separator:gab616695f2d1a3af53a63e6401b08e70d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac9a691832702750d3c4b85361f0ad63c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18B20Conf.html#gac9a691832702750d3c4b85361f0ad63c">CONF_RES_12b</a>&#160;&#160;&#160;0x7F</td></tr>
+<tr class="separator:gac9a691832702750d3c4b85361f0ad63c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a85f18913f84481c1e2e3dd88c958ecfb"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structSDS18S20.html">SDS18S20</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a></td></tr>
-<tr class="memdesc:a85f18913f84481c1e2e3dd88c958ecfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the DS18S20 sensor including the 1-Wire bus configuration (MCU PORT and PIN selected for DS18S20 connection).  <a href="#a85f18913f84481c1e2e3dd88c958ecfb">More...</a><br /></td></tr>
-<tr class="separator:a85f18913f84481c1e2e3dd88c958ecfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d068bde8074d490a4f6f2a09e9b6126"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="ds18S20_8h.html#a9140d9bb1749f998246f717d2261a3e1">ESensorModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds18S20_8h.html#a0d068bde8074d490a4f6f2a09e9b6126">TSensorModel</a></td></tr>
+<tr class="memdesc:a0d068bde8074d490a4f6f2a09e9b6126"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the sensor model.  <a href="#a0d068bde8074d490a4f6f2a09e9b6126">More...</a><br /></td></tr>
+<tr class="separator:a0d068bde8074d490a4f6f2a09e9b6126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af24c0ed0e54211484c661111f023cfc0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structSDS18x20.html">SDS18x20</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a></td></tr>
+<tr class="memdesc:af24c0ed0e54211484c661111f023cfc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the DS18S20 sensor including the 1-Wire bus configuration (MCU PORT and PIN selected for DS18S20 connection).  <a href="#af24c0ed0e54211484c661111f023cfc0">More...</a><br /></td></tr>
+<tr class="separator:af24c0ed0e54211484c661111f023cfc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a9140d9bb1749f998246f717d2261a3e1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds18S20_8h.html#a9140d9bb1749f998246f717d2261a3e1">ESensorModel</a> { <a class="el" href="ds18S20_8h.html#a9140d9bb1749f998246f717d2261a3e1a1e85a4885612953a79a818ef66dd5841">DS18S20Sensor</a> = 0, 
+<a class="el" href="ds18S20_8h.html#a9140d9bb1749f998246f717d2261a3e1afde3b124f334a126bb2cf8a2f2b51f78">DS18B20Sensor</a>
+ }</td></tr>
+<tr class="memdesc:a9140d9bb1749f998246f717d2261a3e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the sensor model.  <a href="ds18S20_8h.html#a9140d9bb1749f998246f717d2261a3e1">More...</a><br /></td></tr>
+<tr class="separator:a9140d9bb1749f998246f717d2261a3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga082b79730de5e55945697edd8271bb55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OneWire.html#ga082b79730de5e55945697edd8271bb55">OWWriteBit</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20, uint8_t bit)</td></tr>
-<tr class="separator:ga082b79730de5e55945697edd8271bb55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadfcae4ef42906f1c6143c1a602d6dd4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OneWire.html#gadfcae4ef42906f1c6143c1a602d6dd4f">OWWriteByte</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20, uint8_t value)</td></tr>
-<tr class="separator:gadfcae4ef42906f1c6143c1a602d6dd4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8d071adfe117dd33a59231199024c32b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OneWire.html#ga8d071adfe117dd33a59231199024c32b">OWReadBit</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
-<tr class="separator:ga8d071adfe117dd33a59231199024c32b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaea5b8c65b686d9813df444ec82eebfad"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OneWire.html#gaea5b8c65b686d9813df444ec82eebfad">OWReadByte</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
-<tr class="separator:gaea5b8c65b686d9813df444ec82eebfad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga78b16ca709b7322a8ccf05a1bc72adfc"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OneWire.html#ga78b16ca709b7322a8ccf05a1bc72adfc">OWReset</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
-<tr class="separator:ga78b16ca709b7322a8ccf05a1bc72adfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab6b949feebc08b85a3898200a222f357"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#gab6b949feebc08b85a3898200a222f357">DS18S20_Init</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20, volatile uint8_t *DS18S20_PORT, uint8_t DS18S20_PIN)</td></tr>
-<tr class="memdesc:gab6b949feebc08b85a3898200a222f357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init function for DS18S20. The function prepares the 1-Wire bus and runs the sensors initialization procedure.  <a href="group__DS18S20func.html#gab6b949feebc08b85a3898200a222f357">More...</a><br /></td></tr>
-<tr class="separator:gab6b949feebc08b85a3898200a222f357"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga421ab051ba3e3fb5028e88f3fbe64a5b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga421ab051ba3e3fb5028e88f3fbe64a5b">DS18S20_ReadROM</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
-<tr class="memdesc:ga421ab051ba3e3fb5028e88f3fbe64a5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads DS18S20 64-bit ROM code without using the Search ROM procedure.  <a href="group__DS18S20func.html#ga421ab051ba3e3fb5028e88f3fbe64a5b">More...</a><br /></td></tr>
-<tr class="separator:ga421ab051ba3e3fb5028e88f3fbe64a5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2059f70099e5cf01c026cac1718383a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga2059f70099e5cf01c026cac1718383a6">DS18S20_MeasureTemperature</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
-<tr class="memdesc:ga2059f70099e5cf01c026cac1718383a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This functions initiates a single temperature conversion.  <a href="group__DS18S20func.html#ga2059f70099e5cf01c026cac1718383a6">More...</a><br /></td></tr>
-<tr class="separator:ga2059f70099e5cf01c026cac1718383a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa51f8231f60e8ef7bb6e3252cf5d33b7"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#gaa51f8231f60e8ef7bb6e3252cf5d33b7">DS18S20_ReadScratchPad</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
-<tr class="memdesc:gaa51f8231f60e8ef7bb6e3252cf5d33b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the contents of DS18S20 scratchpad.  <a href="group__DS18S20func.html#gaa51f8231f60e8ef7bb6e3252cf5d33b7">More...</a><br /></td></tr>
-<tr class="separator:gaa51f8231f60e8ef7bb6e3252cf5d33b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3cf2131ec2edb8e454ce957da0eee850"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga3cf2131ec2edb8e454ce957da0eee850">DS18S20_PowerSupplyType</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
-<tr class="memdesc:ga3cf2131ec2edb8e454ce957da0eee850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the power supply type based on the respond from the sensor on Read Power Supply function command.  <a href="group__DS18S20func.html#ga3cf2131ec2edb8e454ce957da0eee850">More...</a><br /></td></tr>
-<tr class="separator:ga3cf2131ec2edb8e454ce957da0eee850"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga805482df7842d24263d3e6c6aa116d1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga805482df7842d24263d3e6c6aa116d1c">DS18S20_WriteScratchpad</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20, uint8_t TH, uint8_t TL)</td></tr>
-<tr class="memdesc:ga805482df7842d24263d3e6c6aa116d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers).  <a href="group__DS18S20func.html#ga805482df7842d24263d3e6c6aa116d1c">More...</a><br /></td></tr>
-<tr class="separator:ga805482df7842d24263d3e6c6aa116d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6cfa4a19f45d7d72f6afd65e259a2381"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga6cfa4a19f45d7d72f6afd65e259a2381">DS18S20_CopyScratchpad</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
-<tr class="memdesc:ga6cfa4a19f45d7d72f6afd65e259a2381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM.  <a href="group__DS18S20func.html#ga6cfa4a19f45d7d72f6afd65e259a2381">More...</a><br /></td></tr>
-<tr class="separator:ga6cfa4a19f45d7d72f6afd65e259a2381"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae2eae967f7e0bf3dca5115d5bff5cd0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#gae2eae967f7e0bf3dca5115d5bff5cd0d">DS18S20_RECALL_E2</a> (<a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a> *pDS18S20)</td></tr>
-<tr class="memdesc:gae2eae967f7e0bf3dca5115d5bff5cd0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recalls the alarm trigger values (TH and TL) from EEPROM.  <a href="group__DS18S20func.html#gae2eae967f7e0bf3dca5115d5bff5cd0d">More...</a><br /></td></tr>
-<tr class="separator:gae2eae967f7e0bf3dca5115d5bff5cd0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa40790b21d31694f68d1e1d0ee91eaeb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OneWire.html#gaa40790b21d31694f68d1e1d0ee91eaeb">OWWriteBit</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20, uint8_t bit)</td></tr>
+<tr class="separator:gaa40790b21d31694f68d1e1d0ee91eaeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3133813736e8a1019fcf81c8895223fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OneWire.html#ga3133813736e8a1019fcf81c8895223fd">OWWriteByte</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20, uint8_t value)</td></tr>
+<tr class="separator:ga3133813736e8a1019fcf81c8895223fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga13332b9352e1a0ad40e41b575ef66a99"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OneWire.html#ga13332b9352e1a0ad40e41b575ef66a99">OWReadBit</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
+<tr class="separator:ga13332b9352e1a0ad40e41b575ef66a99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9dba5b11632da0789a24a224d8d80763"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OneWire.html#ga9dba5b11632da0789a24a224d8d80763">OWReadByte</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
+<tr class="separator:ga9dba5b11632da0789a24a224d8d80763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaea11f9d4e1133a56646c2d92cdaab10b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OneWire.html#gaea11f9d4e1133a56646c2d92cdaab10b">OWReset</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
+<tr class="separator:gaea11f9d4e1133a56646c2d92cdaab10b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b7596818232d04424e2b2c88020a085"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga4b7596818232d04424e2b2c88020a085">DS18x20_Init</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20, <a class="el" href="ds18S20_8h.html#a0d068bde8074d490a4f6f2a09e9b6126">TSensorModel</a> sensorModel, volatile uint8_t *DS18x20_PORT, uint8_t DS18x20_PIN)</td></tr>
+<tr class="memdesc:ga4b7596818232d04424e2b2c88020a085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init function for DS18x20. The function prepares the 1-Wire bus and runs the sensors initialization procedure. In case of DS18B20, the init function doesn't set the value of the Configuration register. After the initialization is done it still has the default value. To change the resolution use <a class="el" href="group__DS18S20func.html#ga92dd166749f5474a2dfa08f605f8eade" title="Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers). ">DS18x20_WriteScratchpad()</a> function or <a class="el" href="group__DS18S20func.html#ga99e61f4f4465d54ac3dbf17ad4514ad0" title="Defines the resolution of DS18B20 sensor. The function doesn&#39;t update the sensor Configuration regist...">DS18x20_SetResolution()</a> macro.  <a href="group__DS18S20func.html#ga4b7596818232d04424e2b2c88020a085">More...</a><br /></td></tr>
+<tr class="separator:ga4b7596818232d04424e2b2c88020a085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b58e7ec459d9fc38587d1349aca30c2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga8b58e7ec459d9fc38587d1349aca30c2">DS18x20_ReadROM</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
+<tr class="memdesc:ga8b58e7ec459d9fc38587d1349aca30c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads DS18S20 64-bit ROM code without using the Search ROM procedure.  <a href="group__DS18S20func.html#ga8b58e7ec459d9fc38587d1349aca30c2">More...</a><br /></td></tr>
+<tr class="separator:ga8b58e7ec459d9fc38587d1349aca30c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga32295df4c812692333f23cb173523e51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga32295df4c812692333f23cb173523e51">DS18x20_MeasureTemperature</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
+<tr class="memdesc:ga32295df4c812692333f23cb173523e51"><td class="mdescLeft">&#160;</td><td class="mdescRight">This functions initiates a single temperature conversion.  <a href="group__DS18S20func.html#ga32295df4c812692333f23cb173523e51">More...</a><br /></td></tr>
+<tr class="separator:ga32295df4c812692333f23cb173523e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabcafb18ab3819228832c293d5fc95338"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#gabcafb18ab3819228832c293d5fc95338">DS18x20_ReadScratchPad</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
+<tr class="memdesc:gabcafb18ab3819228832c293d5fc95338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the contents of DS18S20 scratchpad.  <a href="group__DS18S20func.html#gabcafb18ab3819228832c293d5fc95338">More...</a><br /></td></tr>
+<tr class="separator:gabcafb18ab3819228832c293d5fc95338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga084930c25d9ed5e7844b20fe0b5bcb68"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga084930c25d9ed5e7844b20fe0b5bcb68">DS18x20_PowerSupplyType</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
+<tr class="memdesc:ga084930c25d9ed5e7844b20fe0b5bcb68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the power supply type based on the respond from the sensor on Read Power Supply function command.  <a href="group__DS18S20func.html#ga084930c25d9ed5e7844b20fe0b5bcb68">More...</a><br /></td></tr>
+<tr class="separator:ga084930c25d9ed5e7844b20fe0b5bcb68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga06f192b59cbe54898c54cd6dcebdb1ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga06f192b59cbe54898c54cd6dcebdb1ee">DS18x20_SetAlarmValues</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20, uint8_t TH, uint8_t TL)</td></tr>
+<tr class="memdesc:ga06f192b59cbe54898c54cd6dcebdb1ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the values of the TH and TL registers. The function doesn't update the sensor registers directly. Call <a class="el" href="group__DS18S20func.html#ga92dd166749f5474a2dfa08f605f8eade" title="Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers). ">DS18x20_WriteScratchpad()</a> function to transfer those value to the sensor.  <a href="group__DS18S20func.html#ga06f192b59cbe54898c54cd6dcebdb1ee">More...</a><br /></td></tr>
+<tr class="separator:ga06f192b59cbe54898c54cd6dcebdb1ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga99e61f4f4465d54ac3dbf17ad4514ad0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga99e61f4f4465d54ac3dbf17ad4514ad0">DS18x20_SetResolution</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20, uint8_t CONF_REG)</td></tr>
+<tr class="memdesc:ga99e61f4f4465d54ac3dbf17ad4514ad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the resolution of DS18B20 sensor. The function doesn't update the sensor Configuration register directly. Call <a class="el" href="group__DS18S20func.html#ga92dd166749f5474a2dfa08f605f8eade" title="Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers). ">DS18x20_WriteScratchpad()</a> function to transfer the new resolution value to the sensor. The function doesn't have any effect when it is called for DS18S20 sensor.  <a href="group__DS18S20func.html#ga99e61f4f4465d54ac3dbf17ad4514ad0">More...</a><br /></td></tr>
+<tr class="separator:ga99e61f4f4465d54ac3dbf17ad4514ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga92dd166749f5474a2dfa08f605f8eade"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga92dd166749f5474a2dfa08f605f8eade">DS18x20_WriteScratchpad</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
+<tr class="memdesc:ga92dd166749f5474a2dfa08f605f8eade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers).  <a href="group__DS18S20func.html#ga92dd166749f5474a2dfa08f605f8eade">More...</a><br /></td></tr>
+<tr class="separator:ga92dd166749f5474a2dfa08f605f8eade"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0cd6b2eb108d291eea617689a3f2472b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga0cd6b2eb108d291eea617689a3f2472b">DS18x20_CopyScratchpad</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
+<tr class="memdesc:ga0cd6b2eb108d291eea617689a3f2472b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM.  <a href="group__DS18S20func.html#ga0cd6b2eb108d291eea617689a3f2472b">More...</a><br /></td></tr>
+<tr class="separator:ga0cd6b2eb108d291eea617689a3f2472b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab112a387150b7545c9c4d55fabc06f58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#gab112a387150b7545c9c4d55fabc06f58">DS18x20_RECALL_E2</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
+<tr class="memdesc:gab112a387150b7545c9c4d55fabc06f58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recalls the alarm trigger values (TH and TL) from EEPROM.  <a href="group__DS18S20func.html#gab112a387150b7545c9c4d55fabc06f58">More...</a><br /></td></tr>
+<tr class="separator:gab112a387150b7545c9c4d55fabc06f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c99c5525d160d8713fcbf1660abf28a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds18S20_8h.html#a0c99c5525d160d8713fcbf1660abf28a">DS18x20_TemperatureValue</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
+<tr class="memdesc:a0c99c5525d160d8713fcbf1660abf28a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert temperature reading to a floating point number.  <a href="#a0c99c5525d160d8713fcbf1660abf28a">More...</a><br /></td></tr>
+<tr class="separator:a0c99c5525d160d8713fcbf1660abf28a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Header file of DS18S20 library. It contains the prototypes of all functions available in the library, definitions of all macros and constans. </p>
@@ -155,12 +196,12 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="a85f18913f84481c1e2e3dd88c958ecfb"></a>
+<a class="anchor" id="af24c0ed0e54211484c661111f023cfc0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="structSDS18S20.html">SDS18S20</a> <a class="el" href="ds18S20_8h.html#a85f18913f84481c1e2e3dd88c958ecfb">TSDS18S20</a></td>
+          <td class="memname">typedef struct <a class="el" href="structSDS18x20.html">SDS18x20</a> <a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -169,10 +210,73 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a0d068bde8074d490a4f6f2a09e9b6126"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef enum <a class="el" href="ds18S20_8h.html#a9140d9bb1749f998246f717d2261a3e1">ESensorModel</a>  <a class="el" href="ds18S20_8h.html#a0d068bde8074d490a4f6f2a09e9b6126">TSensorModel</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Defines the sensor model. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="a9140d9bb1749f998246f717d2261a3e1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="ds18S20_8h.html#a9140d9bb1749f998246f717d2261a3e1">ESensorModel</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Defines the sensor model. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a9140d9bb1749f998246f717d2261a3e1a1e85a4885612953a79a818ef66dd5841"></a>DS18S20Sensor&#160;</td><td class="fielddoc">
+<p>Define the sensor as DS18S20 </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a9140d9bb1749f998246f717d2261a3e1afde3b124f334a126bb2cf8a2f2b51f78"></a>DS18B20Sensor&#160;</td><td class="fielddoc">
+<p>Define the sensor as DS18B20 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a0c99c5525d160d8713fcbf1660abf28a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double DS18x20_TemperatureValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *&#160;</td>
+          <td class="paramname"><em>pDS18x20</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert temperature reading to a floating point number. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pDS18x20</td><td>pointer to the structure that represent DS18S20 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 10 2015 01:13:42 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 12 2015 00:23:41 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>
