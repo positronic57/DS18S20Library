@@ -13,7 +13,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdlib.h>
-#include "CRCgen.h"
+#include <util/crc16.h>
 
 /** @file ds18S20.c
  *  @brief Implements the functions defined in the header file.
@@ -108,6 +108,18 @@ uint8_t OWReadByte(TSDS18x20 *pDS18x20)
 	return data;
 }
 
+/* Calculates CRC value based on the example in Avr-libc reference manual. */
+uint8_t OWCheckCRC(uint8_t *data, uint8_t length)
+{
+	uint8_t i;
+	uint8_t CRCvalue=0;
+	
+	for(i=0;i<length;i++)
+		CRCvalue=_crc_ibutton_update(CRCvalue,*(data+i));
+
+	return CRCvalue;
+}
+
 /* Init function for DS18S20. */
 uint8_t DS18x20_Init(TSDS18x20 *pDS18x20,TSensorModel sensorModel,volatile uint8_t *DS18x20_PORT,uint8_t DS18x20_PIN)
 {
@@ -133,7 +145,7 @@ uint8_t DS18x20_ReadROM(TSDS18x20 *pDS18x20)
 	for(i=0;i<8;i++)
 		pDS18x20->serialNumber[i]=OWReadByte(pDS18x20);
 	
-	if (crc8(pDS18x20->serialNumber,7)==pDS18x20->serialNumber[7])
+	if (OWCheckCRC(pDS18x20->serialNumber,7)==pDS18x20->serialNumber[7])
 		return 1;
 	else
 		return 0;
@@ -176,7 +188,7 @@ uint8_t DS18x20_ReadScratchPad(TSDS18x20 *pDS18x20)
 	for(i=0;i<9;i++)
 		pDS18x20->scratchpad[i]=OWReadByte(pDS18x20);
 		
-	if (crc8(pDS18x20->scratchpad,8)==pDS18x20->scratchpad[8])
+	if (OWCheckCRC(pDS18x20->scratchpad,8)==pDS18x20->scratchpad[8])
 		return 1;
 	else
 		return 0;

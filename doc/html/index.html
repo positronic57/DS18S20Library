@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">DS18S20 library
-   &#160;<span id="projectnumber">v0.4</span>
+   &#160;<span id="projectnumber">v0.5a</span>
    </div>
    <div id="projectbrief">DS18S20/DS18B20 library in C for AVR 8-bit microcontrollers</div>
   </td>
@@ -45,10 +45,11 @@
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Goce Boshkovski</dd></dl>
 <h1><a class="anchor" id="desc"></a>
 Short Description</h1>
-<p>The library implements 1-Wire interface for communication with DS18S20/DS18B20.</p>
+<p>DS18S20library is an AVR C library for connecting DS18S20 and DS18B20 temperature sensors to 8-bit AVR microcontrollers. The library implements 1-Wire interface for communication with DS18S20/DS18B20.</p>
 <h1><a class="anchor" id="whatsnew"></a>
 What's New</h1>
 <ul>
+<li>Removed dependency from external functions for calculating cyclic redundancy checks (CRC);</li>
 <li>Added support for DS18B20 sensor;</li>
 <li>Possibility to define the resolution of the temperature measurement from 9 to 12 bits in case of DS18B20 sensor;</li>
 <li>Added a new function that converts the sensor temperature reading to a decimal number;</li>
@@ -95,7 +96,7 @@ Usage</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 12 2015 01:30:10 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 13 2015 23:53:58 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

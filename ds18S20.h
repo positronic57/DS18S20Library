@@ -125,6 +125,16 @@ uint8_t OWReadByte(TSDS18x20 *pDS18x20);
  *
 */
 uint8_t OWReset(TSDS18x20 *pDS18x20);
+
+/**
+ * @brief Calculates CRC value based on the example in Avr-libc reference manual.
+ *
+ * @param [in] data pointer to the input data
+ * @param [in] length data length
+ * @return uint8_t the calculated CRC value
+ *
+ */
+uint8_t OWCheckCRC(uint8_t *data, uint8_t length);
 /* @} */
 
 /** \defgroup DS18S20func DS18x20 functions */
@@ -227,7 +237,6 @@ void DS18x20_CopyScratchpad(TSDS18x20 *pDS18x20);
  *
  */
 void DS18x20_RECALL_E2(TSDS18x20 *pDS18x20);
-/* @} */
 
 /**
  * @brief Convert temperature reading to a floating point number.

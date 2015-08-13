@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">DS18S20 library
-   &#160;<span id="projectnumber">v0.4</span>
+   &#160;<span id="projectnumber">v0.5a</span>
    </div>
    <div id="projectbrief">DS18S20/DS18B20 library in C for AVR 8-bit microcontrollers</div>
   </td>
@@ -57,9 +57,48 @@ Functions</h2></td></tr>
 <tr class="separator:ga9dba5b11632da0789a24a224d8d80763"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaea11f9d4e1133a56646c2d92cdaab10b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OneWire.html#gaea11f9d4e1133a56646c2d92cdaab10b">OWReset</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
 <tr class="separator:gaea11f9d4e1133a56646c2d92cdaab10b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b94972910ea2359820c34304987dcc5"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OneWire.html#ga8b94972910ea2359820c34304987dcc5">OWCheckCRC</a> (uint8_t *data, uint8_t length)</td></tr>
+<tr class="memdesc:ga8b94972910ea2359820c34304987dcc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates CRC value based on the example in Avr-libc reference manual.  <a href="#ga8b94972910ea2359820c34304987dcc5">More...</a><br /></td></tr>
+<tr class="separator:ga8b94972910ea2359820c34304987dcc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ga8b94972910ea2359820c34304987dcc5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t OWCheckCRC </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates CRC value based on the example in Avr-libc reference manual. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>pointer to the input data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">length</td><td>data length </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t the calculated CRC value </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ga13332b9352e1a0ad40e41b575ef66a99"></a>
 <div class="memitem">
 <div class="memproto">
@@ -205,7 +244,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 12 2015 01:30:10 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 13 2015 23:53:58 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>
