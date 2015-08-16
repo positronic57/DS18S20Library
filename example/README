@@ -1,23 +1,32 @@
 The library is distributed with the following examples:
 - DS18B20example1.c;
 - DS18B20example2.c;
+- DS18B20example3.c;
 - DS18S20example1.c.
+
 
 They are tested on Atmega32 microcontroller.
 
-All of them use serial port for representing sensor readings to the user.
-The code for serial communication is implemented in UART.c and UART.h files.
+DS18B20example1, DS18B20example2 and DS18S20example1 use serial port for representing sensor readings to the user.
+The code for serial communication is implemented in UART.c and UART.h files. DS18B20example3 displays the temperature
+reading on LCD module. It uses HD44780library (https://github.com/positronic57/HD44780Library) for driving the LCD module.
+
 
 DS18B20example1.c
 
 This program demonstrates the usage of DS18S20 library with Atmega32 for temperature measurement. 
-The temperature reading from the sensor is first converted to a decimal value using DS18x20_TemperatureValue() function from the library and then to a string by dtostrf(). 
-This function is located in the mathematical library, libm.a. 
-Link this example with the math library with the -lm option while compiling.
+The temperature reading from the sensor is first converted to a decimal value using DS18x20_TemperatureValue() function from the library and 
+then to a string by dtostrf().This function is located in the mathematical library, libm.a. Link this example with the math library using 
+the -lm switch while compiling.
 
 DS18B20example2.c
 
 This example demonstrates how DS18S20 library can be use for reading DS18B20 ROM code and check the power supply type of the sensor. 
+
+
+DS18S20example3.c
+
+The temperature reading from the sensor in this example is displayed on the connected LCD module. HD44780library is used for LCD support.
 
 DS18S20example1.c
 
