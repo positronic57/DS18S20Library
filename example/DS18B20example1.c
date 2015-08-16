@@ -26,15 +26,13 @@
 
 
 #include <avr/io.h>
-#include <string.h>
+#include <stdlib.h>
 
 #define F_CPU 16000000UL
 
+#include <stdlib.h>
 #include "ds18s20.h"
 #include "UART.h"
-
-// Convert the temperature reading to a string
-void ConvertTemperature2String(uint8_t LSB, uint8_t MSB, char *buffer);
 
 int main(void)
 {

@@ -84,7 +84,7 @@ typedef struct SDS18x20
 
 /** \defgroup OneWire Implementation of 1-Wire Interface */
 /* @{ */
-/**Send one bit via 1-Wire interface to DS18S20 sensor.
+/**@brief Send one bit via 1-Wire interface to DS18S20 sensor.
  * 
  * @param[in] pDS18x20 pointer to the structure that represent DS18S20
  * @param[in] bit a bit value to be send
@@ -93,7 +93,7 @@ typedef struct SDS18x20
 */
 void OWWriteBit(TSDS18x20 *pDS18x20, uint8_t bit);
 
-/**Send one byte via 1-Wire interface to DS18S20 sensor.
+/**@brief Send one byte via 1-Wire interface to DS18S20 sensor.
  * 
  * @param[in] pDS18x20 pointer to the structure that represent DS18S20
  * @param[in] value a byte value to be send
@@ -102,7 +102,7 @@ void OWWriteBit(TSDS18x20 *pDS18x20, uint8_t bit);
 */
 void OWWriteByte(TSDS18x20 *pDS18x20, uint8_t value);
 
-/**Read a bit from the 1-Wire interface.
+/**@brief Read a bit from the 1-Wire interface.
  * 
  * @param[in] pDS18x20 pointer to the structure that represent DS18S20
  * @return uint8_t value read from the 1-Wire interface
@@ -110,7 +110,7 @@ void OWWriteByte(TSDS18x20 *pDS18x20, uint8_t value);
 */
 uint8_t OWReadBit(TSDS18x20 *pDS18x20);
 
-/**Read a byte from the 1-Wire interface.
+/**@brief Read a byte from the 1-Wire interface.
  * 
  * @param[in] pDS18x20 pointer to the structure that represent DS18S20
  * @return uint8_t byte read from the 1-Wire interface
@@ -118,7 +118,7 @@ uint8_t OWReadBit(TSDS18x20 *pDS18x20);
 */
 uint8_t OWReadByte(TSDS18x20 *pDS18x20);
 
-/**Used for initialization of DS18S20 sensor before data exchange.
+/**@brief Used for initialization of DS18S20 sensor before data exchange.
  * 
  * @param[in] pDS18x20 pointer to the structure that represent DS18S20
  * @return uint8_t Returns 0 for success, 1 for failed initialization attempt.
