@@ -121,19 +121,38 @@ uint8_t OWCheckCRC(uint8_t *data, uint8_t length)
 }
 
 /* Init function for DS18S20. */
-uint8_t DS18x20_Init(TSDS18x20 *pDS18x20,TSensorModel sensorModel,volatile uint8_t *DS18x20_PORT,uint8_t DS18x20_PIN)
+uint8_t DS18x20_Init(TSDS18x20 *pDS18x20,volatile uint8_t *DS18x20_PORT,uint8_t DS18x20_PIN)
 {
 	//Init ports/pins to which DS18S20 is attached.
 	pDS18x20->DS18x20_PORT = DS18x20_PORT;
 	pDS18x20->DS18x20_PIN = DS18x20_PIN;
-	pDS18x20->SensorModel = sensorModel;
 	
 	//Set DS18S20 PIN as input one and PORT bit to 0
 	*(pDS18x20->DS18x20_PORT) &= ~(_BV(pDS18x20->DS18x20_PIN));
 	*(pDS18x20->DS18x20_PORT-1) &= ~(_BV(pDS18x20->DS18x20_PIN));
 	
-	return OWReset(pDS18x20);
+	if (OWReset(pDS18x20))
+		return 1;
+	
+	//Check DS18x20 sensor type by reading the family code from the ROM code
+	if (!DS18x20_ReadROM(pDS18x20))
+		return 1;
+	
+	switch(pDS18x20->serialNumber[0])
+	{
+		case 0x28:
+			pDS18x20->SensorModel=DS18B20Sensor;
+			break;
+		case 0x10:
+			pDS18x20->SensorModel=DS18S20Sensor;
+			break;
+		default:
+			return 1;	
+	}
+	
+	return 0;
 }
+
 
 /* Reads DS18S20 64-bit ROM code without using the Search ROM procedure. */
 uint8_t DS18x20_ReadROM(TSDS18x20 *pDS18x20)
@@ -216,7 +235,8 @@ void DS18x20_SetAlarmValues(TSDS18x20 *pDS18x20, uint8_t TH, uint8_t TL)
 /* Defines the resolution of the sensor. Doesn't have any effect on DS18S20. */
 void DS18x20_SetResolution(TSDS18x20 *pDS18x20, uint8_t CONF_REG)
 {
-	pDS18x20->scratchpad[4]=CONF_REG;
+	if (pDS18x20->SensorModel==DS18B20Sensor)
+		pDS18x20->scratchpad[4]=CONF_REG;	
 	
 	return;
 }

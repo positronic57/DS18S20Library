@@ -55,7 +55,7 @@ int main(void)
 	LCDInit4(pHD44780Display,&PORTD,&PORTB,PD4,PD7,PD6,TWO_LINES_DISPLAY);
 	LCDSendCommand4(pHD44780Display,DISPLAY_ON);
 	
-	if (DS18x20_Init(pDS18x20,DS18B20Sensor,&PORTC,PC4))
+	if (DS18x20_Init(pDS18x20,&PORTC,PC4))
 	{
 		LCDShowString4(pHD44780Display,"Error!!!");
 		return -1;

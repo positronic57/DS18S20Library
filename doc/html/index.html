@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">DS18S20 library
-   &#160;<span id="projectnumber">v0.5a</span>
+   &#160;<span id="projectnumber">v0.5</span>
    </div>
    <div id="projectbrief">DS18S20/DS18B20 library in C for AVR 8-bit microcontrollers</div>
   </td>
@@ -45,15 +45,12 @@
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Goce Boshkovski</dd></dl>
 <h1><a class="anchor" id="desc"></a>
 Short Description</h1>
-<p>DS18S20library is an AVR C library for connecting DS18S20 and DS18B20 temperature sensors to 8-bit AVR microcontrollers. The library implements 1-Wire interface for communication with DS18S20/DS18B20.</p>
+<p>DS18S20library is an AVR C library for connecting DS18S20 and DS18B20 temperature sensors to 8-bit AVR microcontrollers. The library implements 1-Wire interface for communication with DS18S20/DS18B20. Originally it was written for DS18S20 and starting from version 0.4 the library fully supports DS18B20 sensor model as well.</p>
 <h1><a class="anchor" id="whatsnew"></a>
 What's New</h1>
-<ul>
-<li>Removed dependency from external functions for calculating cyclic redundancy checks (CRC);</li>
-<li>Added support for DS18B20 sensor;</li>
-<li>Possibility to define the resolution of the temperature measurement from 9 to 12 bits in case of DS18B20 sensor;</li>
-<li>Added a new function that converts the sensor temperature reading to a decimal number;</li>
-<li>New examples that demonstrate DS18B20 support.</li>
+<p>Version 0.5</p><ul>
+<li>The library detect the sensor model during the initialization process. There is no need to specify sensor model in the init function as before;</li>
+<li>The examples are updated with the new init function that can detect the sensor model.</li>
 </ul>
 <h1><a class="anchor" id="hwsupp"></a>
 Supported MCU Hardware</h1>
@@ -65,7 +62,7 @@ DS18S20 support and implemented functions</h1>
 <li>DS18S20;</li>
 <li>DS18B20.</li>
 </ul>
-<p>The library can be used only in cases when DS18x20 sensor is powered by external power supply. It doesn't query the sensor for the type of the power supply.</p>
+<p>The library can be used only in cases when DS18x20 sensor is powered by external power supply. Although the library includes a function that can determine the power supply type, this information is not taken in consideration when the library communicates with the sensor via the 1-Wire bus.</p>
 <p>Current version supports 1-Wire bus with only one device attached to it. SEARCH_ROM is not implemented in the library so it cannot query the bus for connected devices/sensors.</p>
 <p>Implemented DS18x20 ROM Commands:</p><ul>
 <li>DS18S20/DS18B20 sensor initialization;</li>
@@ -82,13 +79,13 @@ DS18S20 support and implemented functions</h1>
 </ul>
 <h1><a class="anchor" id="use"></a>
 Usage</h1>
-<p>The library use DS18x20_Init function to define the 1-Wire bus and initialize the sensor. For bus definition, the init function requires two arguments:</p><ul>
+<p>The library use DS18x20_Init function to define the 1-Wire bus and initialize the sensor. The function detects the sensor model (DS18B20 or DS18S20) during the initialization process. For bus definition, the init function requires two arguments:</p><ul>
 <li>the address of MCU PORT used for 1-Wire bus;</li>
 <li>MCU pin that is connected to the DQ pin of DS18S20/DS18B20.</li>
 </ul>
 <p>For example:</p>
-<p>DS18x20_Init(pDS18S20,DS18B20Sensor,&amp;PORTD,PD5);</p>
-<p>The first argument is a pointer to the structure that represents the sensor. The second argument defines the sensor model. See the documentation section for further details.</p>
+<p>DS18x20_Init(pDS18S20,&amp;PORTD,PD5);</p>
+<p>The first argument is a pointer to the structure that represents the sensor. See the documentation section for further details.</p>
 <p>After the initialization step, the rest of the library functions/macros can be used to get the address of the sensor, start a temperature conversion and read the sensor memory that contains the temperature value.</p>
 <p>Check the doc folder for detailed describtion of the library.</p>
 <p>Tested on Atmega32 and Atiny2313 microcontrollers.</p>
@@ -96,7 +93,7 @@ Usage</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 16 2015 17:15:19 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 20 2015 00:12:47 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

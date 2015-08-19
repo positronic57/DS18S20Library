@@ -45,7 +45,7 @@ int main(void)
 	USART_init(103);
 	
 	// Init DS18B20 sensor
-	if (DS18x20_Init(pDS18x20,DS18B20Sensor,&PORTD,PD5))
+	if (DS18x20_Init(pDS18x20,&PORTD,PD5))
 	{
 		USART_SendString("Error!!! Can not find 1-Wire device attached on the bus!");
 		return -1;

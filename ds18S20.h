@@ -148,12 +148,11 @@ uint8_t OWCheckCRC(uint8_t *data, uint8_t length);
  * use DS18x20_WriteScratchpad() function or DS18x20_SetResolution() macro.
  * 
  * @param[in,out] pDS18x20 pointer to the structure that represent DS18S20
- * @param [in] sensorModel defines the sensor model: DS18S20 or DS18B20
  * @param[in] DS18x20_PORT is a pointer to the MCU PORT used for the 1-Wire bus
  * @param[in] DS18x20_PIN MCU PIN from DS18x20_PORT connected to the DS18S20 sensor
- * @return uint8_t. 1 for success init, 0 for failure.
+ * @return uint8_t. 0 for success init, 1 for failure.
  */	
-uint8_t DS18x20_Init(TSDS18x20 *pDS18x20,TSensorModel sensorModel,volatile uint8_t *DS18x20_PORT,uint8_t DS18x20_PIN);
+uint8_t DS18x20_Init(TSDS18x20 *pDS18x20,volatile uint8_t *DS18x20_PORT,uint8_t DS18x20_PIN);
 	
 /**
  * @brief Reads DS18S20 64-bit ROM code without using the Search ROM procedure.

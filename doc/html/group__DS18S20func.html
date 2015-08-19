@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">DS18S20 library
-   &#160;<span id="projectnumber">v0.5a</span>
+   &#160;<span id="projectnumber">v0.5</span>
    </div>
    <div id="projectbrief">DS18S20/DS18B20 library in C for AVR 8-bit microcontrollers</div>
   </td>
@@ -47,9 +47,9 @@
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga4b7596818232d04424e2b2c88020a085"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga4b7596818232d04424e2b2c88020a085">DS18x20_Init</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20, <a class="el" href="ds18S20_8h.html#a0d068bde8074d490a4f6f2a09e9b6126">TSensorModel</a> sensorModel, volatile uint8_t *DS18x20_PORT, uint8_t DS18x20_PIN)</td></tr>
-<tr class="memdesc:ga4b7596818232d04424e2b2c88020a085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init function for DS18x20. The function prepares the 1-Wire bus and runs the sensors initialization procedure. In case of DS18B20, the init function doesn't set the value of the Configuration register. After the initialization is done it still has the default value. To change the resolution use <a class="el" href="group__DS18S20func.html#ga92dd166749f5474a2dfa08f605f8eade" title="Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers). ">DS18x20_WriteScratchpad()</a> function or <a class="el" href="group__DS18S20func.html#ga99e61f4f4465d54ac3dbf17ad4514ad0" title="Defines the resolution of DS18B20 sensor. The function doesn&#39;t update the sensor Configuration regist...">DS18x20_SetResolution()</a> macro.  <a href="#ga4b7596818232d04424e2b2c88020a085">More...</a><br /></td></tr>
-<tr class="separator:ga4b7596818232d04424e2b2c88020a085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae751b5682f2e8801fdc4a9c636a8b7eb"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#gae751b5682f2e8801fdc4a9c636a8b7eb">DS18x20_Init</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20, volatile uint8_t *DS18x20_PORT, uint8_t DS18x20_PIN)</td></tr>
+<tr class="memdesc:gae751b5682f2e8801fdc4a9c636a8b7eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init function for DS18x20. The function prepares the 1-Wire bus and runs the sensors initialization procedure. In case of DS18B20, the init function doesn't set the value of the Configuration register. After the initialization is done it still has the default value. To change the resolution use <a class="el" href="group__DS18S20func.html#ga92dd166749f5474a2dfa08f605f8eade" title="Writes 2 bytes of data to the SA18S20 scratchpad (TH and TL registers). ">DS18x20_WriteScratchpad()</a> function or <a class="el" href="group__DS18S20func.html#ga99e61f4f4465d54ac3dbf17ad4514ad0" title="Defines the resolution of DS18B20 sensor. The function doesn&#39;t update the sensor Configuration regist...">DS18x20_SetResolution()</a> macro.  <a href="#gae751b5682f2e8801fdc4a9c636a8b7eb">More...</a><br /></td></tr>
+<tr class="separator:gae751b5682f2e8801fdc4a9c636a8b7eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8b58e7ec459d9fc38587d1349aca30c2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DS18S20func.html#ga8b58e7ec459d9fc38587d1349aca30c2">DS18x20_ReadROM</a> (<a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *pDS18x20)</td></tr>
 <tr class="memdesc:ga8b58e7ec459d9fc38587d1349aca30c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads DS18S20 64-bit ROM code without using the Search ROM procedure.  <a href="#ga8b58e7ec459d9fc38587d1349aca30c2">More...</a><br /></td></tr>
 <tr class="separator:ga8b58e7ec459d9fc38587d1349aca30c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,7 +108,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga4b7596818232d04424e2b2c88020a085"></a>
+<a class="anchor" id="gae751b5682f2e8801fdc4a9c636a8b7eb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -117,12 +117,6 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="ds18S20_8h.html#af24c0ed0e54211484c661111f023cfc0">TSDS18x20</a> *&#160;</td>
           <td class="paramname"><em>pDS18x20</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="ds18S20_8h.html#a0d068bde8074d490a4f6f2a09e9b6126">TSensorModel</a>&#160;</td>
-          <td class="paramname"><em>sensorModel</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -148,13 +142,12 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">pDS18x20</td><td>pointer to the structure that represent DS18S20 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">sensorModel</td><td>defines the sensor model: DS18S20 or DS18B20 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">DS18x20_PORT</td><td>is a pointer to the MCU PORT used for the 1-Wire bus </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">DS18x20_PIN</td><td>MCU PIN from DS18x20_PORT connected to the DS18S20 sensor </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>uint8_t. 1 for success init, 0 for failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>uint8_t. 0 for success init, 1 for failure. </dd></dl>
 
 </div>
 </div>
@@ -415,7 +408,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 16 2015 17:15:19 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 20 2015 00:12:47 for DS18S20 library by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

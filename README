@@ -1,13 +1,13 @@
 DS18S20library is an AVR C library for connecting DS18S20 and DS18B20 temperature sensors to 8-bit AVR microcontrollers.
 The library implements 1-Wire interface for communication with DS18S20/DS18B20.
+Originally it was written for DS18S20 and starting from version 0.4 the library fully supports
+DS18B20 sensor model as well.
 
 What's New
 
-- Removed dependency from external functions for calculating cyclic redundancy checks (CRC);
-- Added support for DS18B20 sensor;
-- Possibility to define the resolution of the temperature measurement from 9 to 12 bits in case of DS18B20 sensor;
-- Added a new function that converts the sensor temperature reading to a decimal number;
-- New examples that demonstrate DS18B20 support.
+Version 0.5
+- The library detect the sensor model during the initialization process. There is no need to specify sensor model in the init function as before; 
+- The examples are updated with the new init function that can detect the sensor model.
 
 Supported MCU Hardware
 
@@ -20,7 +20,8 @@ The following sensor models are supported by the library:
 - DS18B20.
 
 The library can be used only in cases when DS18x20 sensor is powered by external power supply.
-It doesn't query the sensor for the type of the power supply.
+Although the library includes a function that can determine the power supply type, this information is not taken in 
+consideration when the library communicates with the sensor via the 1-Wire bus.
 
 Current version supports 1-Wire bus with only one device attached to it.
 SEARCH_ROM is not implemented in the library so it cannot query the bus for connected devices/sensors.
@@ -40,17 +41,17 @@ Implemented DS18x20 Function Commands:
 
 Usage
 
-The library use DS18x20_Init function to define the 1-Wire bus and initialize the sensor.
+The library use DS18x20_Init function to define the 1-Wire bus and initialize the sensor. The function detects the sensor
+model (DS18B20 or DS18S20) during the initialization process.
 For bus definition, the init function requires two arguments:
 - the address of MCU PORT used for 1-Wire bus;
 - MCU pin that is connected to the DQ pin of DS18S20/DS18B20.
 
 For example:
 
-DS18x20_Init(pDS18S20,DS18B20Sensor,&PORTD,PD5);
+DS18x20_Init(pDS18S20,&PORTD,PD5);
 
-The first argument is a pointer to the structure that represents the sensor. The second argument defines the sensor model. See 
-the documentation section for further details.
+The first argument is a pointer to the structure that represents the sensor. See the documentation section for further details.
 
 After the initialization step, the rest of the library functions/macros can be used to
 get the address of the sensor, start a temperature conversion and read the sensor memory that contains 
