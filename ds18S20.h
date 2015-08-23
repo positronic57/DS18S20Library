@@ -166,9 +166,9 @@ uint8_t DS18x20_ReadROM(TSDS18x20 *pDS18x20);
  * @brief This functions initiates a single temperature conversion.
  * 
  * @param[in,out] pDS18x20 pointer to the structure that represent DS18S20
- * @return void
+ * @return uint8_t 1 on successful templerature measurement, 0 in case of error.
  */	
-void DS18x20_MeasureTemperature(TSDS18x20 *pDS18x20);
+uint8_t DS18x20_MeasureTemperature(TSDS18x20 *pDS18x20);
 
 /**
  * @brief Read the contents of DS18S20 scratchpad.

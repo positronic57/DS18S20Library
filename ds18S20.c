@@ -171,7 +171,7 @@ uint8_t DS18x20_ReadROM(TSDS18x20 *pDS18x20)
 }
 
 /* This functions initiates a single temperature conversion. */
-void DS18x20_MeasureTemperature(TSDS18x20 *pDS18x20)
+uint8_t DS18x20_MeasureTemperature(TSDS18x20 *pDS18x20)
 {
 	OWReset(pDS18x20);
 	OWWriteByte(pDS18x20,SKIP_ROM);
@@ -192,7 +192,7 @@ void DS18x20_MeasureTemperature(TSDS18x20 *pDS18x20)
 			_delay_ms(750);
 	}
 	
-	return;
+	return (DS18x20_ReadScratchPad(pDS18x20));
 }
 
 /* Read the content of DS18S20 scratchpad and check the integrity with CRC. */
