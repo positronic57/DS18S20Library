@@ -12,7 +12,8 @@
  * DS18B20 ROM code and check power supply type of the sensor.
  * The sensor is connected to Atmega32 microcontroller.
  * 
- * The CPU freq is 16MHz defined with F_CPU.
+ * The CPU freq is 16MHz and must be defined via F_CPU symbol during the compiling time using 
+ * the -DF_CPU arrgument.
  * 
  * DS18S20 and Atmega32 connection: 
  * - DQ DS18S20 connected to PIN5 of PORTD

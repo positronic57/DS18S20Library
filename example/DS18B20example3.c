@@ -14,7 +14,8 @@
  * It uses HD44780library (https://github.com/positronic57/HD44780Library) 
  * for driving the LCD module.
  *
- * The CPU freq is 4MHz defined with F_CPU.
+ * The CPU freq is 4MHz and must be defined via F_CPU symbol during the compiling time using 
+ * the -DF_CPU arrgument.
  * 
  * DS18S20 and Atmega32 connection: 
  * - DQ DS18S20 connected on PIN4 of PORTC.

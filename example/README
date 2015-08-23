@@ -11,6 +11,9 @@ DS18B20example1, DS18B20example2 and DS18S20example1 use serial port for represe
 The code for serial communication is implemented in UART.c and UART.h files. DS18B20example3 displays the temperature
 reading on LCD module. It uses HD44780library (https://github.com/positronic57/HD44780Library) for driving the LCD module.
 
+The CPU freq must be defined during the compile time by using -DF_CPU argument. If not specified, F_CPU will be set 
+to the default value of 4MHz (see ds18s20.h header).
+
 
 DS18B20example1.c
 
