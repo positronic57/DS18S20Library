@@ -15,7 +15,8 @@
  * in the mathematical library, libm.a.
  * Link this example with the math library with the -lm option while compiling.
  * 
- * The CPU freq is 16MHz defined with F_CPU.
+ * The CPU freq is 16MHz and must be defined via F_CPU symbol during the compiling time using
+ * the -DF_CPU arrgument.
  * 
  * DS18S20 and Atmega32 connection: 
  * - DQ DS18S20 connected to PIN5 of PORTD
@@ -27,8 +28,6 @@
 
 #include <avr/io.h>
 #include <stdlib.h>
-
-#define F_CPU 16000000UL
 
 #include <stdlib.h>
 #include "ds18s20.h"

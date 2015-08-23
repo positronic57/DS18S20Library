@@ -13,7 +13,8 @@
  * converted to a string with additional function that is not part of the
  * library and send via serial port.
  *
- * The CPU freq is 16MHz defined with F_CPU.
+ * The CPU freq is 16MHz and must be defined via F_CPU symbol during the compiling time using 
+ * the -DF_CPU arrgument.
  * 
  * DS18S20 and Atmega32 connection: 
  * - DQ DS18S20 connected to PIN5 of PORTD
@@ -26,8 +27,6 @@
 #include <avr/io.h>
 #include <string.h>
 #include <stdlib.h>
-
-#define F_CPU 16000000UL
 
 #include "ds18s20.h"
 #include "UART.h"
