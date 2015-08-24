@@ -163,10 +163,11 @@ uint8_t DS18x20_Init(TSDS18x20 *pDS18x20,volatile uint8_t *DS18x20_PORT,uint8_t 
 uint8_t DS18x20_ReadROM(TSDS18x20 *pDS18x20);
 
 /**
- * @brief This functions initiates a single temperature conversion.
+ * @brief This functions initiates a temperature conversion via CONVERT_T function command 
+ * and then issues READ_SCRATCHPAD command for fetching the temperature reading.
  * 
  * @param[in,out] pDS18x20 pointer to the structure that represent DS18S20
- * @return uint8_t 1 on successful templerature measurement, 0 in case of error.
+ * @return uint8_t 1 on successful temperature measurement, 0 in case of error.
  */	
 uint8_t DS18x20_MeasureTemperature(TSDS18x20 *pDS18x20);
 

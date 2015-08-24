@@ -28,9 +28,6 @@
 
 #include <avr/io.h>
 #include <stdlib.h>
-
-#define F_CPU 16000000UL
-
 #include <stdlib.h>
 #include "ds18s20.h"
 #include "UART.h"
@@ -59,11 +56,8 @@ int main(void)
 	DS18x20_SetResolution(pDS18x20,CONF_RES_9b);
 	DS18x20_WriteScratchpad(pDS18x20);
 	
-	// Initiate a temperature conversion
-	DS18x20_MeasureTemperature(pDS18x20);
-	
-	// Read sensor memory to fetch temperature reading	
-	if (DS18x20_ReadScratchPad(pDS18x20))
+	// Initiate a temperature conversion and get the temperature reading
+	if (DS18x20_MeasureTemperature(pDS18x20))
 	{
 		// Send the temperature over serial port
 		USART_SendString("Current Temperature is: ");
