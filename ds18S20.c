@@ -141,7 +141,11 @@ uint8_t DS18x20_Init(TSDS18x20 *pDS18x20,volatile uint8_t *DS18x20_PORT,uint8_t 
 	switch(pDS18x20->serialNumber[0])
 	{
 		case 0x28:
-			pDS18x20->SensorModel=DS18B20Sensor;
+			{
+				pDS18x20->SensorModel=DS18B20Sensor;	
+				// Set the resolution to its default value
+				pDS18x20->scratchpad[4]=CONF_RES_12b;
+			}
 			break;
 		case 0x10:
 			pDS18x20->SensorModel=DS18S20Sensor;
