@@ -5,9 +5,9 @@ DS18B20 sensor model as well.
 
 What's New
 
-Version 0.5
-- The library detect the sensor model during the initialization process. There is no need to specify sensor model in the init function as before; 
-- The examples are updated with the new init function that can detect the sensor model.
+Version 0.5.1
+- DS18x20_MeasureTemperature() has been extended with READ_SCRATCHPAD command so the temperature can be measured and read in one step;
+- Minor update of DS18x20_Init().
 
 Supported MCU Hardware
 
