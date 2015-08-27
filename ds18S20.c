@@ -174,7 +174,7 @@ uint8_t DS18x20_ReadROM(TSDS18x20 *pDS18x20)
 		return 0;
 }
 
-/* This functions initiates a single temperature conversion. */
+/* This functions initiates a single temperature conversion and reads sensors scratchpad. */
 uint8_t DS18x20_MeasureTemperature(TSDS18x20 *pDS18x20)
 {
 	OWReset(pDS18x20);

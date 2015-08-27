@@ -39,6 +39,12 @@ Implemented DS18x20 Function Commands:
 - COPY SCRATCHPAD command that copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM;
 - RECALL E2 recalls the alarm trigger values (TH and TL) from EEPROM of the sensor.
 
+1-Wire interface
+
+The underline implementation of 1-Wire interface relies on timer functions that are part of AVR-libc and defined in util/delay.h
+header. Those functions require the CPU freq to be defined via F_CPU macro. This value can be set globally during the compiling time
+using -DF_CPU=<value>L switch. If this macro is not defined, the library will assign a default value of 4MHz.
+
 Usage
 
 The library use DS18x20_Init function to define the 1-Wire bus and initialize the sensor. The function detects the sensor
