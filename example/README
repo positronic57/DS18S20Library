@@ -14,6 +14,7 @@ reading on LCD module. It uses HD44780library (https://github.com/positronic57/H
 The CPU freq must be defined during the compile time by using -DF_CPU argument. If not specified, F_CPU will be set 
 to the default value of 4MHz (see ds18s20.h header).
 
+
 DS18B20example1.c
 
 This program demonstrates the usage of DS18S20 library with Atmega32 for temperature measurement. 

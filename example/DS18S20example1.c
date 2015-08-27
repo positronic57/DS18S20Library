@@ -53,11 +53,8 @@ int main(void)
 		USART_SendString("1-Wire device detected on the bus.");
 	USART_SendChar(0x0D);
 
-	// Initiate a temperature conversion
-	DS18x20_MeasureTemperature(pDS18x20);
-	
-	// Read sensor memory to fetch temperature reading	
-	if (DS18x20_ReadScratchPad(pDS18x20))
+	// Initiate a temperature conversion and get the temperature reading
+	if (DS18x20_MeasureTemperature(pDS18x20))
 	{
 		// Send the temperature over serial port
 		USART_SendString("Current Temperature is: ");

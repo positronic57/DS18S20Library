@@ -63,11 +63,8 @@ int main(void)
 	DS18x20_SetResolution(pDS18x20,CONF_RES_12b);
 	DS18x20_WriteScratchpad(pDS18x20);
 
-	// Initiate a temperature conversion
-	DS18x20_MeasureTemperature(pDS18x20);
-	
-	// Read sensor memory to fetch temperature reading.
-	if (DS18x20_ReadScratchPad(pDS18x20))
+	// Initiate a temperature conversion and get the temperature reading
+	if (DS18x20_MeasureTemperature(pDS18x20))
 	{
 		// Show the temperature on the LCD module.
 		dtostrf(DS18x20_TemperatureValue(pDS18x20),7,4,buffer);

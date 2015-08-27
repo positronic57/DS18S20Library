@@ -141,7 +141,11 @@ uint8_t DS18x20_Init(TSDS18x20 *pDS18x20,volatile uint8_t *DS18x20_PORT,uint8_t 
 	switch(pDS18x20->serialNumber[0])
 	{
 		case 0x28:
-			pDS18x20->SensorModel=DS18B20Sensor;
+			{
+				pDS18x20->SensorModel=DS18B20Sensor;	
+				// Set the resolution to its default value
+				pDS18x20->scratchpad[4]=CONF_RES_12b;
+			}
 			break;
 		case 0x10:
 			pDS18x20->SensorModel=DS18S20Sensor;
@@ -170,8 +174,8 @@ uint8_t DS18x20_ReadROM(TSDS18x20 *pDS18x20)
 		return 0;
 }
 
-/* This functions initiates a single temperature conversion. */
-void DS18x20_MeasureTemperature(TSDS18x20 *pDS18x20)
+/* This functions initiates a single temperature conversion and reads sensors scratchpad. */
+uint8_t DS18x20_MeasureTemperature(TSDS18x20 *pDS18x20)
 {
 	OWReset(pDS18x20);
 	OWWriteByte(pDS18x20,SKIP_ROM);
@@ -192,7 +196,7 @@ void DS18x20_MeasureTemperature(TSDS18x20 *pDS18x20)
 			_delay_ms(750);
 	}
 	
-	return;
+	return (DS18x20_ReadScratchPad(pDS18x20));
 }
 
 /* Read the content of DS18S20 scratchpad and check the integrity with CRC. */
