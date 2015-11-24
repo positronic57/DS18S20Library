@@ -17,10 +17,10 @@
  * The CPU freq is 4MHz and must be defined via F_CPU symbol during the compiling time using 
  * the -DF_CPU arrgument.
  * 
- * DS18S20 and Atmega32 connection: 
+ * DS18B20 and Atmega32 connection: 
  * - DQ DS18S20 connected on PIN4 of PORTC.
  * 
- * DS18S20 is powered by an external supply.
+ * DS18B20 is powered by an external supply.
  * There is a pull-up resistor on the 1-Wire bus.
  *
  * Connection between MCU and JHD 162A 16x2 LCD module:

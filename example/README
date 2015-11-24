@@ -29,7 +29,9 @@ This example demonstrates how DS18S20 library can be use for reading DS18B20 ROM
 
 DS18S20example3.c
 
-The temperature reading from the sensor in this example is displayed on the connected LCD module. HD44780library is used for LCD support.
+The temperature reading from the sensor in this example is displayed on the connected LCD module. 
+HD44780library is used for LCD support. Hardware subfolder contains the schema of the electronic circuits
+for this example. As for DS18S20example1.c, link this project with the math library due to the use of dtostrf() function.
 
 DS18S20example1.c
 

@@ -1,0 +1,18 @@
+DS18B20example3.sch demonstrates temperature measurement with DS18B20 sensor using DS18S20Library and Atmega32 microcontroller.
+
+The temperature reading from the sensor is presented on a two line LCD module with HD44780 driver.
+
+The software part is listed in DS18B20Example3.c source file.
+
+The schema is created wiht Eagle 7.3.0.  
+
+LICENSE
+The circuit is published under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+
+WARNING: 
+
+The schema DS18S20example3.sch is provided as it is without any warranty. 
+Use it on your own risk!
+The author does not take any responsibility for the damage caused while using this circuit.
+
