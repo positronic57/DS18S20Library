@@ -6,10 +6,6 @@ The software part is listed in DS18B20Example3.c source file.
 
 The schema is created wiht Eagle 7.3.0.  
 
-LICENSE
-The circuit is published under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
-
-
 WARNING: 
 
 The schema DS18S20example3.sch is provided as it is without any warranty. 
