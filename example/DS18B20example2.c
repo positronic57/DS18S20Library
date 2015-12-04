@@ -16,7 +16,7 @@
  * the -DF_CPU arrgument.
  * 
  * DS18S20 and Atmega32 connection: 
- * - DQ DS18S20 connected to PIN5 of PORTD
+ * - DQ DS18B20 connected to PIN5 of PORTD
  * 
  * DS18S20 is powered by an external supply.
  * There is a pull-up resistor on the 1-Wire bus.
