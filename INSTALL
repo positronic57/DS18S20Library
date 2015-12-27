@@ -1,0 +1,41 @@
+DS18S20Library Installation Manual
+
+
+This short HOWTO describes the installation procedure for DS18S20Library on Linux.
+
+Prerequisites:
+- GNU binutils and GNU gcc compiler built for AVR targets;
+- AVR-libc.
+
+
+Installation
+
+1. Navigate to the library folder.
+2. Build the library with:
+
+        #make
+
+3. Install the library by executing:
+
+        #sudo make install
+
+The destination folder is defined by two variables in the Makefile: $PREFIX and $MCU.
+$MCU defines the target AVR MCU. By default, the library is installed in:
+
+        /usr/lib/avr/lib/$MCU
+
+or
+        /usr/lib/avr/lib/atmega32
+
+While the default destination for the library header file is:
+
+        /usr/lib/avr/include
+
+The source is compiled with MCU clock set to 16MHz by default. To change this value, update the
+definition of the $CPU_FREQ variable in the Makefile.
+
+
+Uninstalling the library
+
+        #sudo make uninstall
+
