@@ -25,7 +25,7 @@
 
 #include <avr/io.h>
 
-#include "ds18s20.h"
+#include "ds18S20.h"
 #include "UART.h"
 
 int main(void)

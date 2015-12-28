@@ -29,7 +29,7 @@
 #include <avr/io.h>
 #include <stdlib.h>
 #include <stdlib.h>
-#include "ds18s20.h"
+#include "ds18S20.h"
 #include "UART.h"
 
 int main(void)
@@ -37,7 +37,6 @@ int main(void)
 	TSDS18x20 DS18x20;
 	TSDS18x20 *pDS18x20 = &DS18x20;
 	char buffer[10];
-	uint8_t i;
 	
 	// AVR serial port init
 	USART_init(103);

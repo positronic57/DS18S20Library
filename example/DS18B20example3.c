@@ -36,7 +36,7 @@
 #include <avr/io.h>
 #include <stdlib.h>
 #include "HD44780.h"
-#include "ds18s20.h"
+#include "ds18S20.h"
 
 int main(void)
 {

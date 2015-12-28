@@ -28,7 +28,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "ds18s20.h"
+#include "ds18S20.h"
 #include "UART.h"
 
 // Convert the temperature reading to a string
