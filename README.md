@@ -1,25 +1,26 @@
-#DS18S20/DS18B20 sensor C library 
+### DS18S20/DS18B20 sensor C library 
 
-##Short Description
+#### Short Description
 
 DS18S20library is an AVR C library for connecting DS18S20 and DS18B20 temperature sensors to 8-bit AVR microcontrollers.
 The library implements 1-Wire interface for communication with DS18S20/DS18B20.
+
 Originally it was written for DS18S20 and starting from version 0.4 the library fully supports
 DS18B20 sensor model as well.
 
 
-What's New
+####What's New
 
 Version 0.5.1
 
 - DS18x20_MeasureTemperature() has been extended with READ_SCRATCHPAD command so the temperature can be measured and read in one step;
 - Minor update of DS18x20_Init().
 
-##Supported MCU Hardware
+#### Supported MCU Hardware
 
 The library is compatible with every 8-bit AVR microcontroller.
 
-##DS18x20 Support and Implemented Functions
+#### DS18x20 Support and Implemented Functions
 
 The following sensor models are supported by the library:
 
@@ -54,7 +55,7 @@ The underline implementation of 1-Wire interface relies on timer functions that 
 header. Those functions require the CPU freq to be defined via F_CPU macro. This value can be set globally during the compiling time
 using -DF_CPU=<value>L switch. If this macro is not defined, the library will assign a default value of 4MHz.
 
-##Usage
+#### Usage
 
 The library use DS18x20_Init function to define the 1-Wire bus and initialize the sensor. The function detects the sensor
 model (DS18B20 or DS18S20) during the initialization process.
@@ -88,7 +89,7 @@ See the documentation section for further details.
 
 Tested on Atmega32 and Atiny2313 microcontrollers.
 
-WARNING: 
+**WARNING:** 
 The source is provided as it is without any warranty. Use it on your own risk!
 The author does not take any responsibility for the damage caused while using this software.
 
