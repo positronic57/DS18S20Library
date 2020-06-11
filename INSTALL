@@ -1,7 +1,10 @@
 DS18S20Library Installation Manual
 
 
-This short HOWTO describes the installation procedure for DS18S20Library on Linux.
+This short HOWTO describes the installation procedure for DS18S20Library on Linux
+with help of Make, avr-libc and avr-gcc compiler.
+For other platforms and building tools, check the documentation of those tools how to create
+a static libraries.
 
 Prerequisites:
 - GNU binutils and GNU gcc compiler built for AVR targets;
@@ -13,29 +16,30 @@ Installation
 1. Navigate to the library folder.
 2. Build the library with:
 
-        #make
+  #make [mcu=<device_name>|cpu_freq=<frequency>]
+
+Calling make with no arguments, results with buld for Atmega32 MCU and CPU frequency of 16MHz.
+Use the command line arguments from above for setting the required mcu and cpu_freq values.
 
 3. Install the library by executing:
 
-        #sudo make install
+  #sudo make install
 
-The destination folder is defined by two variables in the Makefile: $PREFIX and $MCU.
-$MCU defines the target AVR MCU. By default, the library is installed in:
+The destination folder for the library file is defined by the Makefile variable $PREFIX and the MCU name.
+By default, the library is installed in:
 
-        /usr/lib/avr/lib/$MCU
+  /usr/local/lib/avr8/$MCU
 
 or
-        /usr/lib/avr/lib/atmega32
+  /usr/local/lib/avr8/amega32
 
-While the default destination for the library header file is:
+The library header file will land in:
 
-        /usr/lib/avr/include
-
-The source is compiled with MCU clock set to 16MHz by default. To change this value, update the
-definition of the $CPU_FREQ variable in the Makefile.
+  /usr/local/include/avr8
 
 
-Uninstalling the library
 
-        #sudo make uninstall
+Uninstalling the Library
+
+  #sudo make uninstall
 

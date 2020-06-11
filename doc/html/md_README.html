@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DS18S20 library: DS18S20library</title>
+<title>DS18S20 library: DS18S20/DS18B20 sensor C library</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -41,31 +41,30 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">DS18S20library </div>  </div>
+<div class="title">DS18S20/DS18B20 sensor C library </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Goce Boshkovski</dd></dl>
-<h1><a class="anchor" id="desc"></a>
-Short Description</h1>
-<p>DS18S20library is an AVR C library for connecting DS18S20 and DS18B20 temperature sensors to 8-bit AVR microcontrollers. The library implements 1-Wire interface for communication with DS18S20/DS18B20. Originally it was written for DS18S20 and starting from version 0.4 the library fully supports DS18B20 sensor model as well.</p>
-<h1><a class="anchor" id="hwsupp"></a>
-Supported MCU Hardware</h1>
+<div class="textblock"><h4>Short Description</h4>
+<p>DS18S20library is AVR C library for connecting DS18S20 and DS18B20 temperature sensors to 8-bit AVR microcontrollers. The library implements 1-Wire interface for communication with DS18S20/DS18B20.</p>
+<p>Originally it was written for DS18S20 and starting from version 0.4 the library fully supports DS18B20 sensor model as well.</p>
+<h4>Supported MCU Hardware</h4>
 <p>The library is compatible with every 8-bit AVR microcontroller.</p>
-<h1><a class="anchor" id="sensorsupp"></a>
-DS18S20 support and implemented functions</h1>
-<p>DS1820 support and implemented functions</p>
-<p>The following sensor models are supported by the library:</p><ul>
+<h4>DS18x20 Support and Implemented Functions</h4>
+<p>The following sensor models are supported by the library:</p>
+<ul>
 <li>DS18S20;</li>
 <li>DS18B20.</li>
 </ul>
 <p>The library can be used only in cases when DS18x20 sensor is powered by external power supply. Although the library includes a function that can determine the power supply type, this information is not taken in consideration when the library communicates with the sensor via the 1-Wire bus.</p>
 <p>Current version supports 1-Wire bus with only one device attached to it. SEARCH_ROM is not implemented in the library so it cannot query the bus for connected devices/sensors.</p>
-<p>Implemented DS18x20 ROM Commands:</p><ul>
+<p>Implemented DS18x20 ROM Commands:</p>
+<ul>
 <li>DS18S20/DS18B20 sensor initialization;</li>
 <li>READ ROM command for fetching the ROM address of the sensor;</li>
 <li>SKIP ROM command so the library can speak to the sensor directly without using sensors 1-Wire bus address.</li>
 </ul>
-<p>Implemented DS18x20 Function Commands:</p><ul>
+<p>Implemented DS18x20 Function Commands:</p>
+<ul>
 <li>Convert T command that initiates a single temperature conversion;</li>
 <li>READ SCRATCHPAD command that allows the master to read the contents of the sensor memory;</li>
 <li>READ POWER SUPPLY command to determine power supply type of DS18S20/DS18B20;</li>
@@ -73,24 +72,26 @@ DS18S20 support and implemented functions</h1>
 <li>COPY SCRATCHPAD command that copies the contents of the scratchpad TH and TL registers (bytes 2 and 3) to EEPROM;</li>
 <li>RECALL E2 recalls the alarm trigger values (TH and TL) from EEPROM of the sensor.</li>
 </ul>
-<h1><a class="anchor" id="bus"></a>
-1-Wire interface</h1>
-<p>The underline implementation of 1-Wire interface relies on timer functions that are part of AVR-libc and defined in util/delay.h header. Those functions require the CPU freq to be defined via F_CPU macro. This value can be set globally during the compiling time using -DF_CPU=cpu_freq_valueL switch. If this macro is not defined, the library will assign a default value of 4MHz.</p>
-<h1><a class="anchor" id="use"></a>
-Usage</h1>
-<p>The library use DS18x20_Init function to define the 1-Wire bus and initialize the sensor. The function detects the sensor model (DS18B20 or DS18S20) during the initialization process. For bus definition, the init function requires two arguments:</p><ul>
+<p>1-Wire interface</p>
+<p>The underline implementation of 1-Wire interface relies on timer functions that are part of AVR-libc and defined in util/delay.h header. Those functions require the CPU freq to be defined via F_CPU macro. This value can be set globally during the compiling time using -DF_CPU=</p>
+<p>L switch. If this macro is not defined, the library will assign a default value of 4MHz.</p>
+<h4>Usage</h4>
+<p>The library use DS18x20_Init function to define the 1-Wire bus and initialize the sensor. The function detects the sensor model (DS18B20 or DS18S20) during the initialization process.</p>
+<p>For bus definition, the init function requires two arguments:</p>
+<ul>
 <li>the address of MCU PORT used for 1-Wire bus;</li>
-<li>MCU pin that is connected to the DQ pin of DS18S20/DS18B20. The first argument of the init function is a pointer to the structure that represents the sensor.</li>
+<li>MCU pin that is connected to the DQ pin of DS18S20/DS18B20.</li>
 </ul>
+<p>The first argument of the init function is a pointer to the structure that represents the sensor.</p>
 <p>For example: </p><pre class="fragment">TSDS18x20 DS18x20;
 
-DS18x20_Init(&amp;DS18S20, &amp;PORTD, PD5);
+DS18x20_Init(&amp;DS18x20, &amp;PORTD, PD5);
 </pre><p>After the initialization step, the rest of the library functions/macros can be used to get the address of the sensor, start a temperature conversion, define temperature resolution in case of DS18B20 sensor etc.</p>
 <p>For example: </p><pre class="fragment">DS18x20_MeasureTemperature(&amp;DS18x20);
 </pre><p>initiates a temperature conversion and fetches the sensor memory with the temperature reading. The only argument of the function is the same pointer as the one in <a class="el" href="group__DS18S20func.html#gae751b5682f2e8801fdc4a9c636a8b7eb" title="Init function for DS18x20. The function prepares the 1-Wire bus and runs the sensors initialization p...">DS18x20_Init()</a> function.</p>
 <p>See the documentation section for further details.</p>
 <p>Tested on Atmega32 and Atiny2313 microcontrollers.</p>
-<dl class="section warning"><dt>Warning</dt><dd>The source is provided as it is without any warranty. Use it on your own risk! The author does not take any responsibility for the damage caused while using this software. </dd></dl>
+<p><b>WARNING:</b> The source is provided as it is without any warranty. Use it on your own risk! The author does not take any responsibility for the damage caused while using this software. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

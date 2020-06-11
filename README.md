@@ -2,19 +2,12 @@
 
 #### Short Description
 
-DS18S20library is an AVR C library for connecting DS18S20 and DS18B20 temperature sensors to 8-bit AVR microcontrollers.
+DS18S20library is AVR C library for connecting DS18S20 and DS18B20 temperature sensors to 8-bit AVR microcontrollers.
 The library implements 1-Wire interface for communication with DS18S20/DS18B20.
 
 Originally it was written for DS18S20 and starting from version 0.4 the library fully supports
 DS18B20 sensor model as well.
 
-
-#### What's New
-
-Version 0.5.1
-
-- DS18x20_MeasureTemperature() has been extended with READ_SCRATCHPAD command so the temperature can be measured and read in one step;
-- Minor update of DS18x20_Init().
 
 #### Supported MCU Hardware
 
@@ -70,16 +63,15 @@ The first argument of the init function is a pointer to the structure that repre
 For example:
 
 	TSDS18x20 DS18x20;
-	TSDS18x20 *pDS18x20 = &DS18x20;
 
-	DS18x20_Init(pDS18S20,&PORTD,PD5);
+	DS18x20_Init(&DS18x20, &PORTD, PD5);
 
 After the initialization step, the rest of the library functions/macros can be used to
 get the address of the sensor, start a temperature conversion, define temperature resolution in case of DS18B20 sensor etc.
 
 For example:
 
-	DS18x20_MeasureTemperature(pDS18x20);
+	DS18x20_MeasureTemperature(&DS18x20);
 
 initiates a temperature conversion and fetches the sensor memory with the temperature reading. The only argument of the function is 
 the same pointer as the one in DS18x20_Init() function.

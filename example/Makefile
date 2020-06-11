@@ -2,16 +2,24 @@
 #with DS18S20Library.
 
 #AVR Microcontroller
-MCU = atmega32
+ifdef mcu
+	MCU = $(mcu)
+else
+    MCU = atmega32
+endif
 
-#CPU frequency  (must be the same as the value used while building DS18S20Library).
-CPU_FREQ = 16000000L
+#CPU frequency (must be the same as the value used while building DS18S20Library)
+ifndef cpu_freq
+    CPU_FREQ = 16000000L
+else
+    CPU_FREQ = $(cpu_freq)
+endif
 
 #Header files path (Update this with the library installation folder).
-HEADERS_PATH = /usr/lib/avr/include
+HEADERS_PATH = /usr/local/include/avr8
 
 #Library path
-LIBRARY_PATH = /usr/lib/avr/lib/atmega32
+LIBRARY_PATH = /usr/local/lib/avr8/$(MCU)
 
 #List of source files
 SOURCES += DS18B20example1.c DS18B20example2.c DS18S20example1.c UART.c

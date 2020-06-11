@@ -1,3 +1,5 @@
+DS18x20library Examples
+
 The library is distributed with the following examples:
 - DS18B20example1.c;
 - DS18B20example2.c;
@@ -5,63 +7,63 @@ The library is distributed with the following examples:
 - DS18S20example1.c.
 
 
-They are tested on Atmega32 microcontroller.
+Hardware
 
-DS18B20example1, DS18B20example2 and DS18S20example1 use serial port for representing sensor readings to the user.
-The code for serial communication is implemented in UART.c and UART.h files. DS18B20example3 displays the temperature
-reading on LCD module. It uses HD44780library (https://github.com/positronic57/HD44780Library) for driving the LCD module.
+The code has been tested on Atmega32 microcontroller.
 
-The CPU freq must be defined during the compile time by using -DF_CPU argument. If not specified, F_CPU will be set 
-to the default value of 16MHz (see ds18S20.h header).
+DS18B20example1, DS18B20example2 and DS18S20example1 make the sensor readings available over serial port.
+The code for serial communication is implemented in UART.c and UART.h files. 
+DS18B20example3 displays the temperature reading on LCD module with HD44780 driver. 
+It requires HD44780library (https://github.com/positronic57/HD44780Library) for driving the LCD module.
 
 
-DS18B20example1.c
+Examples
 
-This program demonstrates the usage of DS18S20 library with Atmega32 for temperature measurement. 
+- DS18B20example1.c. This program demonstrates the usage of DS18S20 library with Atmega32 for temperature measurement. 
 The temperature reading from the sensor is first converted to a decimal value using DS18x20_TemperatureValue() function from the library and 
 then to a string by dtostrf().This function is located in the mathematical library, libm.a. Link this example with the math library using 
 the -lm switch while compiling.
 
-DS18B20example2.c
+- DS18B20example2.c. This example demonstrates how DS18S20 library can be use for reading DS18B20 ROM code and check the power supply type of the sensor. 
 
-This example demonstrates how DS18S20 library can be use for reading DS18B20 ROM code and check the power supply type of the sensor. 
-
-
-DS18S20example3.c
-
-The temperature reading from the sensor in this example is displayed on the connected LCD module. 
+- DS18S20example3.c. The temperature reading from the sensor in this example is displayed on the connected LCD module. 
 HD44780library is used for LCD support. Hardware subfolder contains the schema of the electronic circuits
 for this example. As for DS18S20example1.c, link this project with the math library due to the use of dtostrf() function.
 
-DS18S20example1.c
-
-This program demonstrates the usage of DS18S20 library with Atmega32 for temperature measurement. 
+- DS18S20example1.c. This program demonstrates the usage of DS18S20 library with Atmega32 for temperature measurement. 
 The temperature reading from DS18S20 sensor is converted to a string with additional function 
 that is not part of the library and send via serial port.
 
+
 Building the examples
 
-The examples: DS18B20example1.c, DS18B20example2.c and DS18S20example1.c can be built using the existing Makefile by executing:
-
-	#make DS18B20example1
-	#make DS18B20example2
-	#make DS18S20example1
-
-or
-
-	#make all 
-
 DS18S20Library must be installed before building the examples.
+
 The variables $LIBRARY_PATH and $HEADERS_PATH from the Makefile defines the library installation folder and the location
 of the library header file. The default locations are:
 
-- /usr/lib/avr/lib/atmega32;
-- /usr/lib/avr/include.
+- /usr/local/lib/avr8/<MCU>
+- /usr/local/include/avr8.
 
 Update those variables with the locations of the installed DS18S20 library.
 
-The source is compiled with MCU clock set to 16MHz by default. To change this value, update the
-definition of the $CPU_FREQ variable in the Makefile.
+The Examples must be compiled with the same CPU frequency as the library.
+If the desired frequency is not the same as the library default, use the
+"cpu_freq" make argument to set the correct value.
+Makefile for the examples supports the same arguments as the library one
+for defining the MCU and CPU frequency.
+
+For building a specific example use:
+
+    #make <example_name>
+or
+    #make DS18B20example1
+
+On the other side,
+
+	#make all 
+
+will build all of them in one go.
 
 
 WARNING: 
