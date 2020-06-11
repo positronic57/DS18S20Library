@@ -50,7 +50,7 @@ $(LIBRARY_NAME).a: $(OBJECTS)
 
 #Install the library
 install: $(LIBRARY_NAME).a
-	if [ ! -d $(PREFIX)/lib/avr8/$(MCU) ]; then mkdir $(PREFIX)/lib/avr8/$(MCU); fi
+	if [ ! -d $(PREFIX)/lib/avr8/$(MCU) ]; then mkdir -p $(PREFIX)/lib/avr8/$(MCU); fi
 	if [ ! -d $(PREFIX)/include/avr8 ]; then mkdir -p $(PREFIX)/include/avr8; fi
 	install -m 0644 $(LIBRARY_NAME).a $(PREFIX)/lib/avr8/$(MCU)
 	install -m 0644 ds18S20.h $(PREFIX)/include/avr8
