@@ -11,7 +11,6 @@
 
 #include <stdlib.h>
 #include <avr/io.h>
-#include <avr/iom32.h>
 
 //USART init
 void USART_init(unsigned int);
